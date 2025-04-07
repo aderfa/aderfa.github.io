@@ -1,216 +1,471 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" sizes="192x192"  href="./android-icon-192x192.png">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Nor Abdillah</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body{
-    background: -webkit-linear-gradient(left, #3931af, #00c6ff);
-}
-.emp-profile{
-    padding: 3%;
-    margin-top: 3%;
-    margin-bottom: 3%;
-    border-radius: 0.5rem;
-    background: rgb(0, 0, 0);
-}
-.profile-img{
-    text-align: center;
-}
-.profile-img img{
-    width: 40%;
-    height: 70%;
-}
-.profile-img .file {
-    position: relative;
-    overflow: hidden;
-    margin-top: -20%;
-    width: 70%;
-    border: none;
-    border-radius: 0;
-    font-size: 15px;
-    background: #212529b8;
-}
-.profile-img .file input {
-    position: absolute;
-    opacity: 0;
-    right: 0;
-    top: 0;
-}
-.profile-head h5{
-    color: rgb(255, 255, 255);
-}
-.profile-head h6{
-    color: #0062cc;
-}
-.profile-edit-btn{
-    border: none;
-    border-radius: 1.5rem;
-    width: 70%;
-    padding: 2%;
-    font-weight: 600;
-    color: #6c757d;
-    cursor: pointer;
-}
-.proile-rating{
-    font-size: 12px;
-    color: #818182;
-    margin-top: 5%;
-}
-.proile-rating span{
-    color: #495057;
-    font-size: 15px;
-    font-weight: 600;
-}
-.profile-head .nav-tabs{
-    margin-bottom:5%;
-}
-.profile-head .nav-tabs .nav-link{
-    font-weight:600;
-    border: none;
-}
-.profile-head .nav-tabs .nav-link.active{
-    border: none;
-    border-bottom:2px solid #0062cc;
-}
-.profile-work{
-    padding: 14%;
-    margin-top: -15%;
-}
-.profile-work p{
-    font-size: 12px;
-    color: #ffffff;
-    font-weight: 600;
-    margin-top: 10%;
-}
-.profile-work a{
-    text-decoration: none;
-    color: #ffffff;
-    font-weight: 600;
-    font-size: 14px;
-}
-.labeltext label{
-    color: #ffffff;
-}
-.profile-work ul{
-    list-style: none;
-}
-.profile-tab label{
-    font-weight: 600;
-}
-.profile-tab p{
-    font-weight: 600;
-    color: #0062cc;
-}
-        </style>
-    <title>Welcome To My Profile</title>
-  </head>
-  <body>
-<div class="container emp-profile">
-            <form method="post">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="profile-img">
-                            <img src="https://i.ibb.co/dkQmm2v/images.jpg" width="275" height="183" alt=""/>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="profile-head">
-                                    <h5>
-                                        Nor Abdillah
-                                    </h5>
-                                    <h6>
-                                        Web Developer
-                                    </h6>
-
-                            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" id="home-tab" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">About</a>
-                                </li>
-                                <li class="nav-item">
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="profile-work">
-                            <p>SOCIAL MEDIA</p>
-                            <a href=""><i class="fab fa-whatsapp"></i> Whatsapp</a><br/>
-                            <a href="https://web.facebook.com/idil.dillah.3/"><i class="fab fa-facebook-f"></i> Facebook</a><br/>
-                            <a href="https://twitter.com/NorAbdillah_"><i class="fab fa-twitter"></i> Twitter</a><br/>
-                            <a href="https://www.instagram.com/nor_abdillah_/"><i class="fab fa-instagram"></i> Instagram</a><br/>
-                            <a href="mailto:norabdillah95@gmail.com"><i class="far fa-envelope"></i> Email</a>
-                            <p>SKILLS</p>
-                            <a href="">Web Developer</a><br/>
-                            <a href="">PHP, Css, C#, SQL</a><br/>
-                            <a href="">Mood booster <i class="fas fa-smile-wink"></i><i class="far fa-smile-wink"></i></a><br/>
-                            <a href="">Loving U <i class="fas fa-heart"></i></a>
-                           <p>My Character?</p>
-                            <a href="">good person of course</a><br/>
-                            <a href="">fun person</a><br/>
-                            <a href="">friendly and likes to share stories</a><br/>
-                            <a href="">like watching anime and reading comics</a><br/>
-                            <a href="">but everything changes when my mood and feelings are broken :)</a><br/>
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="tab-content profile-tab" id="myTabContent">
-                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                <div class="labeltext">
-                                <div class="row">
-                                            <div class="col-md-6">
-                                                <label>NickName</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Botline</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Name</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Nor Abdillah</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Email</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>norabdillah95@gmail.com</p>
-                                            </div>
-                                        </div>
-                                        <!-- <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Phone</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p></p>
-                                            </div>
-                                        </div> -->
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Hoby</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Web Developer</p>
-                                            </div>
-                                        </div>
-                        </div>
-                    </div>
-                </div>
-                      
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap');
+        
+        body {
+            font-family: 'Fira Code', monospace;
+            background-color: #011627;
+            color: #d6deeb;
+        }
+        
+        .code-bg {
+            background-color: #011627;
+            border-left: 1px solid #1e3a5f;
+        }
+        
+        .line-number {
+            color: #637777;
+            user-select: none;
+        }
+        
+        .keyword {
+            color: #c792ea;
+        }
+        
+        .function {
+            color: #82aaff;
+        }
+        
+        .string {
+            color: #ecc48d;
+        }
+        
+        .comment {
+            color: #637777;
+            font-style: italic;
+        }
+        
+        .operator {
+            color: #7fdbca;
+        }
+        
+        .type {
+            color: #ffcb8b;
+        }
+        
+        .terminal {
+            background-color: #01111d;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .terminal-header {
+            background-color: #1d3b53;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+        
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .typewriter {
+            overflow: hidden;
+            border-right: .15em solid #7fdbca;
+            white-space: nowrap;
+            letter-spacing: .15em;
+            animation: 
+                typing 3.5s steps(40, end),
+                blink-caret .75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #7fdbca; }
+        }
+        
+        .glow {
+            text-shadow: 0 0 10px rgba(82, 255, 255, 0.7);
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Terminal Window -->
+    <div class="terminal mx-auto max-w-6xl my-10">
+        <!-- Terminal Header -->
+        <div class="terminal-header flex items-center px-4 py-2">
+            <div class="flex space-x-2 mr-4">
+                <div class="terminal-dot bg-red-500"></div>
+                <div class="terminal-dot bg-yellow-500"></div>
+                <div class="terminal-dot bg-green-500"></div>
+            </div>
+            <div class="text-sm text-gray-300">botline-portfolio.js</div>
         </div>
-
-  </body>
+        
+        <!-- Terminal Body -->
+        <div class="p-6 code-bg">
+            <!-- Code Content -->
+            <div class="flex">
+                <div class="text-right pr-4 select-none">
+                    <div class="line-number">1</div>
+                    <div class="line-number">2</div>
+                    <div class="line-number">3</div>
+                    <div class="line-number">4</div>
+                    <div class="line-number">5</div>
+                    <div class="line-number">6</div>
+                    <div class="line-number">7</div>
+                    <div class="line-number">8</div>
+                    <div class="line-number">9</div>
+                    <div class="line-number">10</div>
+                    <div class="line-number">11</div>
+                    <div class="line-number">12</div>
+                    <div class="line-number">13</div>
+                    <div class="line-number">14</div>
+                    <div class="line-number">15</div>
+                    <div class="line-number">16</div>
+                    <div class="line-number">17</div>
+                    <div class="line-number">18</div>
+                    <div class="line-number">19</div>
+                    <div class="line-number">20</div>
+                    <div class="line-number">21</div>
+                    <div class="line-number">22</div>
+                    <div class="line-number">23</div>
+                    <div class="line-number">24</div>
+                    <div class="line-number">25</div>
+                    <div class="line-number">26</div>
+                    <div class="line-number">27</div>
+                    <div class="line-number">28</div>
+                    <div class="line-number">29</div>
+                    <div class="line-number">30</div>
+                    <div class="line-number">31</div>
+                    <div class="line-number">32</div>
+                    <div class="line-number">33</div>
+                </div>
+                
+                <div>
+                    <!-- Code Content -->
+                    <div><span class="keyword">const</span> <span class="function">portfolio</span> = {</div>
+                    <div class="ml-4"><span class="type">nama</span>: <span class="string">"Muhammad Nor Abdillah"</span>, <span class="comment">//Botline</span></div>
+                    <div class="ml-4"><span class="type">umur</span>: <span class="operator">21</span>,</div>
+                    <div class="ml-4"><span class="type">pendidikan</span>: <span class="string">"Teknik Informatika"</span>,</div>
+                    <div class="ml-4"><span class="type">status</span>: <span class="string">"Mahasiswa"</span>,</div>
+                    <div class="ml-4"><span class="type">minat</span>: [</div>
+                    <div class="ml-8"><span class="string">"Pengembangan Web"</span>,</div>
+                    <div class="ml-8"><span class="string">"UI/UX Design"</span>,</div>
+                    <div class="ml-8"><span class="string">"Pengembangan Game"</span></div>
+                    <div class="ml-4">],</div>
+                    <div class="ml-4"><span class="type">keahlian</span>: [</div>
+                    <div class="ml-8"><span class="string">"HTML/CSS"</span>,</div>
+                    <div class="ml-8"><span class="string">"JavaScript"</span>,</div>
+                    <div class="ml-8"><span class="string">"React"</span>,</div>
+                    <div class="ml-8"><span class="string">"Node.js"</span>,</div>
+                    <div class="ml-8"><span class="string">"Lua"</span>,</div>
+                    <div class="ml-8"><span class="string">"Python"</span></div>
+                    <div class="ml-4">],</div>
+                    <div class="ml-4"><span class="type">pengalaman</span>: [</div>
+                    <div class="ml-8"><span class="string">"FiveM Developer di +62"</span>,</div>
+                    <div class="ml-8"><span class="string">"Pengembangan Server Roleplay"</span>,</div>
+                    <div class="ml-8"><span class="string">"Pembuatan Script Kustom"</span></div>
+                    <div class="ml-4">],</div>
+                    <div class="ml-4"><span class="type">kontak</span>: {</div>
+                    <div class="ml-8"><span class="type">telepon</span>: <span class="string">"085161440821"</span>,</div>
+                    <div class="ml-8"><span class="type">email</span>: <span class="string">"norabdillah95@gmail.com"</span>,</div>
+                    <div class="ml-8"><span class="type">github</span>: <span class="string">"github.com/botline"</span>,</div>
+                    <div class="ml-8"><span class="type">linkedin</span>: <span class="string">"linkedin.com/in/botline"</span></div>
+                    <div class="ml-4">}</div>
+                    <div>};</div>
+                    <div class="mt-4"><span class="keyword">function</span> <span class="function">tentangSaya</span>() {</div>
+                    <div class="ml-4"><span class="keyword">return</span> <span class="string">"Saya seorang pengembang yang bersemangat dalam menciptakan pengalaman digital yang indah dan fungsional. Saat ini memperluas pengetahuan saya di bidang rekayasa perangkat lunak sambil membangun proyek yang memecahkan masalah dunia nyata. Saya memiliki pengalaman sebagai FiveM Developer dengan keahlian dalam bahasa pemrograman Lua untuk mengembangkan server roleplay."</span>;</div>
+                    <div>}</div>
+                </div>
+            </div>
+            
+            <!-- Terminal Prompt -->
+            <div class="mt-6 flex items-center">
+                <span class="text-green-400 mr-2">$</span>
+                <span class="typewriter">node botline-portfolio.js</span>
+            </div>
+            
+            <!-- Terminal Output -->
+            <div class="mt-4 text-green-200">
+                <div>> Memuat data portofolio...</div>
+                <div>> Selamat datang di ruang digital Botline!</div>
+                <div>> Portofolio berhasil diinisialisasi.</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- About Section -->
+    <div class="max-w-6xl mx-auto px-6 py-12">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-cyan-400 mb-2 glow">Tentang Saya</h2>
+            <div class="w-24 h-1 bg-cyan-500 mx-auto"></div>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-gray-900 p-6 rounded-lg border-l-4 border-cyan-500">
+                <div class="text-cyan-400 text-2xl mb-4">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Pendidikan</h3>
+                <p>Sedang mengejar gelar di bidang Teknik Informatika dengan fokus pada pengembangan perangkat lunak dan arsitektur sistem.</p>
+            </div>
+            
+            <div class="bg-gray-900 p-6 rounded-lg border-l-4 border-purple-500">
+                <div class="text-purple-400 text-2xl mb-4">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Pengembangan</h3>
+                <p>Full-stack developer dengan pengalaman dalam membangun aplikasi web menggunakan framework dan library JavaScript modern. Juga berpengalaman dalam pengembangan server FiveM menggunakan Lua.</p>
+            </div>
+            
+            <div class="bg-gray-900 p-6 rounded-lg border-l-4 border-yellow-500">
+                <div class="text-yellow-400 text-2xl mb-4">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Filosofi</h3>
+                <p>Saya percaya pada penulisan kode yang bersih, mudah dipelihara dan menciptakan pengalaman pengguna yang intuitif yang memecahkan masalah nyata.</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Projects Section -->
+    <div class="max-w-6xl mx-auto px-6 py-12 bg-gray-900 bg-opacity-50">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-purple-400 mb-2 glow">Proyek Saya</h2>
+            <div class="w-24 h-1 bg-purple-500 mx-auto"></div>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Project 1 -->
+            <div class="project-card bg-gray-800 rounded-lg overflow-hidden transition-all duration-300">
+                <div class="h-48 bg-gradient-to-r from-cyan-500 to-blue-600 flex items-center justify-center">
+                    <i class="fas fa-project-diagram text-6xl text-white opacity-80"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold mb-2 text-cyan-400">TaskFlow</h3>
+                    <p class="text-gray-300 mb-4">Aplikasi produktivitas yang dibangun dengan React dan Firebase untuk membantu tim mengelola proyek secara efisien.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-gray-700 rounded-full text-sm">React</span>
+                        <span class="px-3 py-1 bg-gray-700 rounded-full text-sm">Firebase</span>
+                        <span class="px-3 py-1 bg-gray-700 rounded-full text-sm">Tailwind</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Project 2 -->
+            <div class="project-card bg-gray-800 rounded-lg overflow-hidden transition-all duration-300">
+                <div class="h-48 bg-gradient-to-r from-purple-500 to-pink-600 flex items-center justify-center">
+                    <i class="fas fa-gamepad text-6xl text-white opacity-80"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold mb-2 text-purple-400">Server FiveM Roleplay</h3>
+                    <p class="text-gray-300 mb-4">Server roleplay kustom dengan berbagai sistem unik dan script yang dikembangkan menggunakan Lua.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-gray-700 rounded-full text-sm">Lua</span>
+                        <span class="px-3 py-1 bg-gray-700 rounded-full text-sm">FiveM</span>
+                        <span class="px-3 py-1 bg-gray-700 rounded-full text-sm">MySQL</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Project 3 -->
+            <div class="project-card bg-gray-800 rounded-lg overflow-hidden transition-all duration-300">
+                <div class="h-48 bg-gradient-to-r from-yellow-500 to-orange-600 flex items-center justify-center">
+                    <i class="fas fa-shopping-cart text-6xl text-white opacity-80"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold mb-2 text-yellow-400">Platform E-Commerce</h3>
+                    <p class="text-gray-300 mb-4">Toko online lengkap dengan integrasi pembayaran dan manajemen inventaris.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-gray-700 rounded-full text-sm">Node.js</span>
+                        <span class="px-3 py-1 bg-gray-700 rounded-full text-sm">MongoDB</span>
+                        <span class="px-3 py-1 bg-gray-700 rounded-full text-sm">Stripe API</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Experience Section -->
+    <div class="max-w-6xl mx-auto px-6 py-12">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-yellow-400 mb-2 glow">Pengalaman FiveM Developer</h2>
+            <div class="w-24 h-1 bg-yellow-500 mx-auto"></div>
+        </div>
+        
+        <div class="bg-gray-900 rounded-lg p-8">
+            <div class="flex items-start mb-8">
+                <div class="bg-yellow-900 p-3 rounded-full mr-6">
+                    <i class="fas fa-server text-yellow-400 text-2xl"></i>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-2 text-yellow-400">FiveM Developer</h3>
+                    <div class="text-gray-400 mb-2">+62 Roleplay Community | 2021 - Sekarang</div>
+                    <p class="text-gray-300">
+                        - Mengembangkan dan memelihara server FiveM roleplay dengan 100+ pemain aktif harian<br>
+                        - Membuat sistem kustom menggunakan Lua termasuk sistem pekerjaan, ekonomi, dan inventory<br>
+                        - Mengoptimalkan performa server dan memperbaiki bug<br>
+                        - Berkolaborasi dengan tim developer dan staff untuk meningkatkan pengalaman bermain
+                    </p>
+                </div>
+            </div>
+            
+            <div class="flex items-start">
+                <div class="bg-blue-900 p-3 rounded-full mr-6">
+                    <i class="fas fa-code text-blue-400 text-2xl"></i>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-2 text-blue-400">Keahlian Teknis</h3>
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <span class="px-4 py-2 bg-gray-800 rounded-full text-sm flex items-center">
+                            <i class="fab fa-lua mr-2"></i> Lua Scripting
+                        </span>
+                        <span class="px-4 py-2 bg-gray-800 rounded-full text-sm flex items-center">
+                            <i class="fas fa-database mr-2"></i> MySQL
+                        </span>
+                        <span class="px-4 py-2 bg-gray-800 rounded-full text-sm flex items-center">
+                            <i class="fas fa-network-wired mr-2"></i> FiveM API
+                        </span>
+                        <span class="px-4 py-2 bg-gray-800 rounded-full text-sm flex items-center">
+                            <i class="fas fa-bug mr-2"></i> Debugging
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Contact Section -->
+    <div class="max-w-6xl mx-auto px-6 py-12">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-pink-400 mb-2 glow">Hubungi Saya</h2>
+            <div class="w-24 h-1 bg-pink-500 mx-auto"></div>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+            <div>
+                <h3 class="text-xl font-semibold mb-4 text-pink-400">Mari membangun sesuatu yang luar biasa bersama!</h3>
+                <p class="mb-6">Saya selalu terbuka untuk mendiskusikan proyek baru, ide kreatif atau peluang untuk menjadi bagian dari visi Anda.</p>
+                
+                <div class="space-y-4">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-pink-900 flex items-center justify-center mr-4">
+                            <i class="fas fa-phone text-pink-400"></i>
+                        </div>
+                        <div>
+                            <div class="text-sm text-gray-400">Telepon</div>
+                            <div>085161440821</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-cyan-900 flex items-center justify-center mr-4">
+                            <i class="fas fa-envelope text-cyan-400"></i>
+                        </div>
+                        <div>
+                            <div class="text-sm text-gray-400">Email</div>
+                            <div>norabdillah95@gmail.com</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-purple-900 flex items-center justify-center mr-4">
+                            <i class="fab fa-github text-purple-400"></i>
+                        </div>
+                        <div>
+                            <div class="text-sm text-gray-400">GitHub</div>
+                            <div>github.com/botline</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-gray-900 p-8 rounded-lg">
+                <form>
+                    <div class="mb-4">
+                        <label class="block text-gray-300 mb-2">Nama</label>
+                        <input type="text" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:border-pink-500">
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="block text-gray-300 mb-2">Email</label>
+                        <input type="email" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:border-pink-500">
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="block text-gray-300 mb-2">Pesan</label>
+                        <textarea class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:border-pink-500 h-32"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white py-3 rounded font-semibold hover:opacity-90 transition-all">
+                        Kirim Pesan
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-8">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <div class="flex justify-center space-x-6 mb-6">
+                <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                    <i class="fab fa-github text-xl"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                    <i class="fab fa-linkedin text-xl"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-pink-400 transition-colors">
+                    <i class="fab fa-instagram text-xl"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                    <i class="fab fa-twitter text-xl"></i>
+                </a>
+            </div>
+            
+            <div class="text-gray-500 text-sm">
+                &copy; 2023 Botline (Muhammad Nor Abdillah). All rights reserved.
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Simple animation for project cards on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            projectCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'all 0.5s ease';
+                observer.observe(card);
+            });
+            
+            // Terminal typing effect
+            const terminalOutput = document.querySelector('.typewriter');
+            setTimeout(() => {
+                terminalOutput.style.borderRight = 'none';
+            }, 3500);
+        });
+    </script>
+</body>
 </html>
