@@ -108,7 +108,7 @@
                 <div class="terminal-dot bg-yellow-500"></div>
                 <div class="terminal-dot bg-green-500"></div>
             </div>
-            <div class="text-sm text-gray-300">botlineo.js</div>
+            <div class="text-sm text-gray-300">botline.js</div>
         </div>
         
         <!-- Terminal Body -->
@@ -390,30 +390,44 @@
                 </div>
             </div>
             
-            <div class="bg-gray-900 p-8 rounded-lg">
-                <form>
-                    <div class="mb-4">
-                        <label class="block text-gray-300 mb-2">Nama</label>
-                        <input type="text" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:border-pink-500">
-                    </div>
-                    
-                    <div class="mb-4">
-                        <label class="block text-gray-300 mb-2">Email</label>
-                        <input type="email" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:border-pink-500">
-                    </div>
-                    
-                    <div class="mb-4">
-                        <label class="block text-gray-300 mb-2">Pesan</label>
-                        <textarea class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:border-pink-500 h-32"></textarea>
-                    </div>
-                    
-                    <button type="submit" class="w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white py-3 rounded font-semibold hover:opacity-90 transition-all">
-                        Kirim Pesan
-                    </button>
-                </form>
-            </div>
+<div class="bg-gray-900 p-8 rounded-lg">
+    <form id="contactForm">
+        <div class="mb-4">
+            <label class="block text-gray-300 mb-2">Nama</label>
+            <input type="text" id="nama" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:border-pink-500" required>
         </div>
-    </div>
+
+        <div class="mb-4">
+            <label class="block text-gray-300 mb-2">Email</label>
+            <input type="email" id="email" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:border-pink-500" required>
+        </div>
+
+        <div class="mb-4">
+            <label class="block text-gray-300 mb-2">Pesan</label>
+            <textarea id="pesan" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:border-pink-500 h-32" required></textarea>
+        </div>
+
+        <button type="submit" class="w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white py-3 rounded font-semibold hover:opacity-90 transition-all">
+            Kirim Pesan
+        </button>
+    </form>
+</div>
+
+<script>
+    document.getElementById("contactForm").addEventListener("submit", function (e) {
+        e.preventDefault(); 
+
+        const nama = document.getElementById("nama").value;
+        const email = document.getElementById("email").value;
+        const pesan = document.getElementById("pesan").value;
+
+        const subject = encodeURIComponent("Pesan dari " + nama);
+        const body = encodeURIComponent("Nama: " + nama + "\nEmail: " + email + "\n\nPesan:\n" + pesan);
+
+        window.location.href = `mailto:norabdillah95@gmail.com?subject=${subject}&body=${body}`;
+    });
+</script>
+
     
     <!-- Footer -->
     <footer class="bg-gray-900 py-8">
@@ -433,14 +447,19 @@
                 </a>
             </div>
             
-            <div class="text-gray-500 text-sm">
-                &copy; 2023 Botline (Muhammad Nor Abdillah). All rights reserved.
-            </div>
+<div class="text-gray-500 text-sm" id="copyright">
+    &copy; <span id="year"></span> Botline (Muhammad Nor Abdillah). All rights reserved.
+</div>
+
+<script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
         </div>
     </footer>
     
     <script>
-        // Simple animation for project cards on scroll
+        
         document.addEventListener('DOMContentLoaded', function() {
             const projectCards = document.querySelectorAll('.project-card');
             
