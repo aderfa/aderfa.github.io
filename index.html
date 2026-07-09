@@ -28,7 +28,6 @@
             font-family: 'Space Grotesk', sans-serif;
         }
 
-        /* Aurora Background */
         .aurora {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -55,7 +54,6 @@
             66% { transform: translate(-30px, 30px) scale(0.9); }
         }
 
-        /* Glassmorphism */
         .glass {
             background: rgba(15, 23, 42, 0.55);
             backdrop-filter: blur(20px);
@@ -71,16 +69,13 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        /* Terminal */
         .terminal-window {
             border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04);
         }
 
-        .code-content {
-            counter-reset: line;
-        }
+        .code-content { counter-reset: line; }
 
         .code-line {
             display: block;
@@ -109,7 +104,6 @@
         .type { color: #ffcb8b; }
         .var { color: #f78c6c; }
 
-        /* Gradient Text */
         .text-gradient {
             background: linear-gradient(135deg, #00f2ff, #bd00ff);
             -webkit-background-clip: text;
@@ -124,21 +118,16 @@
             background-clip: text;
         }
 
-        /* Glows */
         .glow-cyan { text-shadow: 0 0 25px rgba(0, 242, 255, 0.4); }
         .glow-purple { text-shadow: 0 0 25px rgba(189, 0, 255, 0.4); }
 
-        /* Cards */
-        .hover-card {
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
+        .hover-card { transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         .hover-card:hover {
             transform: translateY(-10px) scale(1.01);
             box-shadow: 0 24px 48px rgba(0,0,0,0.5), 0 0 40px rgba(0, 242, 255, 0.08);
             border-color: rgba(0, 242, 255, 0.25);
         }
 
-        /* Bento Grid */
         .bento-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -158,7 +147,6 @@
             transform: translateY(-4px);
         }
 
-        /* Typewriter */
         .typewriter {
             overflow: hidden;
             border-right: .15em solid #00f2ff;
@@ -171,24 +159,18 @@
         @keyframes typing { from { width: 0 } to { width: 100% } }
         @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: #00f2ff; } }
 
-        /* Scrollbar */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #050a14; }
         ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
         ::-webkit-scrollbar-thumb:hover { background: #475569; }
 
-        /* Fade Up */
         .fade-up {
             opacity: 0;
             transform: translateY(40px);
             transition: opacity 1s ease-out, transform 1s ease-out;
         }
-        .fade-up.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
 
-        /* Pulse Dot */
         .pulse-dot {
             width: 8px;
             height: 8px;
@@ -203,10 +185,7 @@
             100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 136, 0); }
         }
 
-        /* Mesh gradient border for logo */
-        .logo-glow {
-            position: relative;
-        }
+        .logo-glow { position: relative; }
         .logo-glow::before {
             content: '';
             position: absolute;
@@ -226,14 +205,12 @@
 </head>
 <body class="min-h-screen antialiased selection:bg-cyan-500/30 selection:text-cyan-50">
 
-    <!-- Aurora Background -->
     <div class="aurora">
         <div class="aurora-blob blob-1"></div>
         <div class="aurora-blob blob-2"></div>
         <div class="aurora-blob blob-3"></div>
     </div>
 
-    <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 glass-strong border-b border-white/5">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
             <div class="font-bold text-xl tracking-tight text-white font-display">
@@ -241,7 +218,7 @@
             </div>
             <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-400">
                 <a href="#tentang" class="hover:text-cyan-400 transition-colors">Tentang</a>
-                <a href="#current" class="hover:text-cyan-400 transition-colors">Current</a>
+                <a href="#current" class="hover:text-cyan-400 transition-colors">Lagi Dikerjain</a>
                 <a href="#keahlian" class="hover:text-cyan-400 transition-colors">Keahlian</a>
                 <a href="#proyek" class="hover:text-cyan-400 transition-colors">Proyek</a>
                 <a href="#kontak" class="hover:text-cyan-400 transition-colors">Kontak</a>
@@ -269,28 +246,27 @@
 
             <div class="p-6 md:p-10 overflow-x-auto">
                 <div class="code-content font-mono">
-                    <span class="code-line"><span class="keyword">const</span> <span class="var">portfolio</span> = {</span>
-                    <span class="code-line">  <span class="type">nama</span>: <span class="string">"Muhammad Nor Abdillah"</span>, <span class="comment">// Botline</span></span>
+                    <span class="code-line"><span class="keyword">const</span> <span class="var">saya</span> = {</span>
+                    <span class="code-line">  <span class="type">nama</span>: <span class="string">"Muhammad Nor Abdillah"</span>, <span class="comment">// alias: Botline</span></span>
                     <span class="code-line">  <span class="type">pendidikan</span>: <span class="string">"Teknik Informatika"</span>,</span>
-                    <span class="code-line">  <span class="type">status</span>: <span class="string">"Mahasiswa & Fullstack Developer"</span>,</span>
-                    <span class="code-line">  <span class="type">minat</span>: [</span>
-                    <span class="code-line">    <span class="string">"Fullstack Web"</span>,</span>
-                    <span class="code-line">    <span class="string">"UI/UX Design"</span>,</span>
-                    <span class="code-line">    <span class="string">"FiveM Development"</span>,</span>
-                    <span class="code-line">    <span class="string">"Game Systems"</span></span>
+                    <span class="code-line">  <span class="type">status</span>: <span class="string">"Mahasiswa, ngoprek anticheat & sistem game server tiap malam"</span>,</span>
+                    <span class="code-line">  <span class="type">fokus</span>: [</span>
+                    <span class="code-line">    <span class="string">"Anti-Cheat untuk FiveM (silent aim, armor injection, dll)"</span>,</span>
+                    <span class="code-line">    <span class="string">"Overlay & process monitoring di C++"</span>,</span>
+                    <span class="code-line">    <span class="string">"Server architecture untuk mode PVP (TDM, Battle Royale)"</span>,</span>
+                    <span class="code-line">    <span class="string">"Reverse engineering & memory hooking seperlunya"</span></span>
                     <span class="code-line">  ],</span>
-                    <span class="code-line">  <span class="type">keahlian</span>: [</span>
-                    <span class="code-line">    <span class="string">"HTML/CSS/JS"</span>,</span>
-                    <span class="code-line">    <span class="string">"React / Next.js"</span>,</span>
-                    <span class="code-line">    <span class="string">"Node.js / Python"</span>,</span>
-                    <span class="code-line">    <span class="string">"Lua / FiveM"</span>,</span>
-                    <span class="code-line">    <span class="string">"Tailwind / TypeScript"</span>,</span>
-                    <span class="code-line">    <span class="string">"MySQL / MongoDB"</span></span>
+                    <span class="code-line">  <span class="type">tools</span>: [</span>
+                    <span class="code-line">    <span class="string">"C++ / DirectX 11 / ImGui"</span>,</span>
+                    <span class="code-line">    <span class="string">"Lua (FXServer / CFX)"</span>,</span>
+                    <span class="code-line">    <span class="string">"Win32 API"</span>,</span>
+                    <span class="code-line">    <span class="string">"MySQL"</span>,</span>
+                    <span class="code-line">    <span class="string">"Node.js / PHP"</span></span>
                     <span class="code-line">  ],</span>
-                    <span class="code-line">  <span class="type">pengalaman</span>: [</span>
-                    <span class="code-line">    <span class="string">"Fullstack Dev — Cerita Kita RP"</span>,</span>
-                    <span class="code-line">    <span class="string">"FiveM Developer — +62 Community"</span>,</span>
-                    <span class="code-line">    <span class="string">"Server Architecture & Optimization"</span></span>
+                    <span class="code-line">  <span class="type">kerjaan</span>: [</span>
+                    <span class="code-line">    <span class="string">"Anti-Cheat & Server Dev — VXFAMS"</span>,</span>
+                    <span class="code-line">    <span class="string">"Game Overlay & Process Monitor (C++)"</span>,</span>
+                    <span class="code-line">    <span class="string">"Matchmaking / Lobby System untuk mode TDM"</span></span>
                     <span class="code-line">  ],</span>
                     <span class="code-line">  <span class="type">kontak</span>: {</span>
                     <span class="code-line">    <span class="type">email</span>: <span class="string">"norabdillah95@gmail.com"</span>,</span>
@@ -299,8 +275,8 @@
                     <span class="code-line">  }</span>
                     <span class="code-line">};</span>
                     <span class="code-line"></span>
-                    <span class="code-line"><span class="keyword">function</span> <span class="function">tentangSaya</span>() {</span>
-                    <span class="code-line">  <span class="keyword">return</span> <span class="string">"Developer yang bersemangat menciptakan pengalaman digital imersif. Spesialis di web modern & FiveM server architecture, dengan fokus pada clean code dan performa."</span>;</span>
+                    <span class="code-line"><span class="keyword">function</span> <span class="function">kenapaAnticheat</span>() {</span>
+                    <span class="code-line">  <span class="keyword">return</span> <span class="string">"Karena game PVP yang nggak fair itu percuma. Saya lebih suka ngebongkar cara cheat kerja dulu, baru bikin sistem yang nutup celahnya."</span>;</span>
                     <span class="code-line">}</span>
                 </div>
 
@@ -310,48 +286,47 @@
                 </div>
 
                 <div class="mt-6 space-y-1.5 font-mono text-sm text-green-300/90">
-                    <div class="flex items-center"><span class="mr-2 text-cyan-500">›</span> Initializing portfolio v2026...</div>
-                    <div class="flex items-center"><span class="mr-2 text-cyan-500">›</span> Welcome to Botline digital space.</div>
-                    <div class="flex items-center"><span class="mr-2 text-cyan-500">›</span> Currently developing on Cerita Kita RP.</div>
-                    <div class="flex items-center"><span class="mr-2 text-cyan-500">›</span> Ready to build something amazing.</div>
+                    <div class="flex items-center"><span class="mr-2 text-cyan-500">›</span> Booting up... server VXFAMS terhubung.</div>
+                    <div class="flex items-center"><span class="mr-2 text-cyan-500">›</span> Anti-cheat module: aktif.</div>
+                    <div class="flex items-center"><span class="mr-2 text-cyan-500">›</span> Lagi sibuk ngoprek overlay + process monitor.</div>
+                    <div class="flex items-center"><span class="mr-2 text-cyan-500">›</span> Siap ngobrol soal proyek baru.</div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Currently Developing: Cerita Kita RP -->
+    <!-- Currently Developing -->
     <section id="current" class="max-w-6xl mx-auto px-6 py-16">
         <div class="fade-up">
             <div class="flex items-center justify-center mb-4">
                 <span class="px-4 py-1.5 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 text-xs font-bold tracking-widest uppercase flex items-center">
                     <span class="pulse-dot mr-2"></span>
-                    Currently Developing
+                    Lagi Dikerjain
                 </span>
             </div>
-            <h2 class="text-3xl md:text-5xl font-bold text-center mb-14 text-gradient font-display tracking-tight">Cerita Kita RP</h2>
+            <h2 class="text-3xl md:text-5xl font-bold text-center mb-14 text-gradient font-display tracking-tight">VXFAMS — Anti-Cheat & Server PVP</h2>
 
             <div class="glass rounded-3xl p-8 md:p-14 hover-card flex flex-col md:flex-row items-center gap-10 md:gap-16">
                 <div class="w-full md:w-2/5 flex justify-center">
                     <div class="relative logo-glow">
                         <div class="absolute inset-0 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full blur-xl opacity-30 animate-pulse"></div>
-                        <img src="https://ceritakitarp.com/logo.png" alt="Cerita Kita RP" class="relative w-44 h-44 md:w-56 md:h-56 object-contain rounded-full bg-[#0b1120] p-6 border border-white/10 shadow-2xl">
+                        <div class="relative w-44 h-44 md:w-56 md:h-56 flex items-center justify-center rounded-full bg-[#0b1120] p-6 border border-white/10 shadow-2xl">
+                            <i class="fas fa-shield-halved text-6xl md:text-7xl text-cyan-400"></i>
+                        </div>
                     </div>
                 </div>
                 <div class="w-full md:w-3/5">
-                    <h3 class="text-2xl md:text-3xl font-bold mb-4 text-white font-display">Fullstack Developer & Server Architect</h3>
+                    <h3 class="text-2xl md:text-3xl font-bold mb-4 text-white font-display">Fair play itu bukan slogan, tapi kerjaan sehari-hari</h3>
                     <p class="text-gray-400 mb-6 leading-relaxed text-sm md:text-base">
-                        Sedang aktif mengembangkan <strong class="text-cyan-400">Cerita Kita RP</strong> — sebuah platform roleplay FiveM next-generation dengan fokus pada narasi mendalam, sistem ekonomi realistis, dan arsitektur server yang scalable. Bertanggung jawab atas core systems, custom Lua scripting, database optimization, serta performa untuk ratusan concurrent players.
+                        Sehari-hari saya megang <strong class="text-cyan-400">VXFAMS</strong>, server FiveM dengan mode PVP kayak TDM dan Battle Royale. Bagian yang paling banyak makan waktu justru bukan bikin fitur baru, tapi mikirin gimana caranya cheater nggak bisa lewat — mulai dari deteksi silent aim di sisi server, validasi damage per tembakan, sampai nge-lock proses game biar nggak gampang di-inject atau di-alt-tab pas lagi match.
                     </p>
                     <div class="flex flex-wrap gap-2 mb-8">
-                        <span class="px-3 py-1.5 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-xs font-medium">Lua Advanced</span>
-                        <span class="px-3 py-1.5 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-300 text-xs font-medium">FXServer</span>
-                        <span class="px-3 py-1.5 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-300 text-xs font-medium">MySQL</span>
-                        <span class="px-3 py-1.5 rounded-lg bg-pink-500/10 border border-pink-500/20 text-pink-300 text-xs font-medium">Server Optimization</span>
-                        <span class="px-3 py-1.5 rounded-lg bg-yellow-500/10 border border-yellow-500/20 text-yellow-300 text-xs font-medium">Systems Design</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-xs font-medium">Lua (FXServer)</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-300 text-xs font-medium">Anti-Silent-Aim</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-300 text-xs font-medium">WaveShield Integration</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-pink-500/10 border border-pink-500/20 text-pink-300 text-xs font-medium">C++ Process Monitor</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-yellow-500/10 border border-yellow-500/20 text-yellow-300 text-xs font-medium">Matchmaking System</span>
                     </div>
-                    <a href="https://ceritakitarp.com" target="_blank" class="inline-flex items-center px-5 py-2.5 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 hover:border-cyan-500/30 text-cyan-400 transition-all text-sm font-medium">
-                        Kunjungi Website <i class="fas fa-arrow-right ml-2 text-xs"></i>
-                    </a>
                 </div>
             </div>
         </div>
@@ -362,26 +337,26 @@
         <div class="fade-up">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-5xl font-bold text-gradient mb-4 font-display tracking-tight">Tentang Saya</h2>
-                <p class="text-gray-400 max-w-xl mx-auto text-sm md:text-base">Mengubah ide kompleks menjadi solusi digital yang elegan dan fungsional.</p>
+                <p class="text-gray-400 max-w-xl mx-auto text-sm md:text-base">Lebih tertarik sama "kenapa cheat ini bisa jalan" dibanding "fitur apa lagi yang bisa ditambah".</p>
             </div>
 
             <div class="grid md:grid-cols-3 gap-6">
                 <div class="glass rounded-2xl p-8 hover-card border-l-[3px] border-cyan-500">
                     <div class="text-cyan-400 text-3xl mb-5"><i class="fas fa-graduation-cap"></i></div>
-                    <h3 class="text-xl font-bold mb-3 text-white font-display">Pendidikan</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">Mahasiswa Teknik Informatika dengan fokus pada Software Engineering, sistem arsitektur, dan interactive design.</p>
+                    <h3 class="text-xl font-bold mb-3 text-white font-display">Kuliah</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Mahasiswa Teknik Informatika. Materi kampus soal sistem dan jaringan lumayan nyambung sama kerjaan ngulik anticheat sehari-hari.</p>
                 </div>
 
                 <div class="glass rounded-2xl p-8 hover-card border-l-[3px] border-purple-500">
-                    <div class="text-purple-400 text-3xl mb-5"><i class="fas fa-laptop-code"></i></div>
-                    <h3 class="text-xl font-bold mb-3 text-white font-display">Fullstack Developer</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">Membangun aplikasi modern dari frontend imersif hingga backend scalable, dengan passion khusus di game server development.</p>
+                    <div class="text-purple-400 text-3xl mb-5"><i class="fas fa-shield-halved"></i></div>
+                    <h3 class="text-xl font-bold mb-3 text-white font-display">Security & Anti-Cheat</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Fokus utama saya sekarang: bikin sistem yang bisa bedain gerakan pemain asli sama bot/cheat, baik di level server (Lua) maupun client (C++).</p>
                 </div>
 
                 <div class="glass rounded-2xl p-8 hover-card border-l-[3px] border-yellow-500">
-                    <div class="text-yellow-400 text-3xl mb-5"><i class="fas fa-lightbulb"></i></div>
-                    <h3 class="text-xl font-bold mb-3 text-white font-display">Problem Solver</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">Clean code, maintainable architecture, dan user experience yang intuitif adalah filosofi utama setiap baris kode.</p>
+                    <div class="text-yellow-400 text-3xl mb-5"><i class="fas fa-bug"></i></div>
+                    <h3 class="text-xl font-bold mb-3 text-white font-display">Suka Ngoprek</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Debug bug yang nyebelin, baca ulang log error yang sama berkali-kali sampai ketemu akar masalahnya — itu bagian yang justru paling saya nikmatin.</p>
                 </div>
             </div>
         </div>
@@ -391,47 +366,47 @@
     <section id="keahlian" class="max-w-6xl mx-auto px-6 py-16">
         <div class="fade-up">
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-5xl font-bold text-gradient mb-4 font-display tracking-tight">Tech Arsenal</h2>
-                <p class="text-gray-400">Stack teknologi yang digunakan untuk membangun masa depan digital.</p>
+                <h2 class="text-3xl md:text-5xl font-bold text-gradient mb-4 font-display tracking-tight">Yang Sering Saya Pakai</h2>
+                <p class="text-gray-400">Bukan daftar buzzword — ini beneran stack yang kepake tiap hari.</p>
             </div>
 
             <div class="bento-grid">
                 <div class="bento-item md:col-span-2 glass border border-white/5">
-                    <h3 class="font-bold mb-4 text-cyan-400 font-display text-lg flex items-center gap-2"><i class="fas fa-window-maximize text-sm"></i> Frontend</h3>
+                    <h3 class="font-bold mb-4 text-cyan-400 font-display text-lg flex items-center gap-2"><i class="fas fa-shield-halved text-sm"></i> Anti-Cheat & Security</h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">React.js</span>
-                        <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">Next.js</span>
-                        <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">TypeScript</span>
-                        <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">Tailwind CSS</span>
-                        <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">Framer Motion</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">Anti Silent-Aim</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">Armor/Injection Detection</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">WaveShield</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">Damage Validation per-shot</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">State Bag Monitoring</span>
                     </div>
                 </div>
 
                 <div class="bento-item glass border border-white/5">
-                    <h3 class="font-bold mb-4 text-purple-400 font-display text-lg flex items-center gap-2"><i class="fas fa-server text-sm"></i> Backend</h3>
+                    <h3 class="font-bold mb-4 text-purple-400 font-display text-lg flex items-center gap-2"><i class="fas fa-desktop text-sm"></i> C++ & Windows</h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">Node.js</span>
-                        <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">Express</span>
-                        <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">Python</span>
-                        <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">REST API</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">DirectX 11</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">ImGui</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">Win32 API</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">Process Hooking</span>
                     </div>
                 </div>
 
                 <div class="bento-item glass border border-white/5">
-                    <h3 class="font-bold mb-4 text-pink-400 font-display text-lg flex items-center gap-2"><i class="fas fa-gamepad text-sm"></i> Game Dev</h3>
+                    <h3 class="font-bold mb-4 text-pink-400 font-display text-lg flex items-center gap-2"><i class="fas fa-gamepad text-sm"></i> Game Server</h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">Lua</span>
-                        <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">FiveM</span>
-                        <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">CFX Platform</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">FiveM / FXServer</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">Matchmaking & Lobby</span>
                     </div>
                 </div>
 
                 <div class="bento-item md:col-span-2 glass border border-white/5">
-                    <h3 class="font-bold mb-4 text-green-400 font-display text-lg flex items-center gap-2"><i class="fas fa-database text-sm"></i> Database & DevOps</h3>
+                    <h3 class="font-bold mb-4 text-green-400 font-display text-lg flex items-center gap-2"><i class="fas fa-database text-sm"></i> Backend & Data</h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">MongoDB</span>
                         <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">MySQL</span>
-                        <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">Docker</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">Node.js</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">PHP</span>
                         <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">Git</span>
                         <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">Linux</span>
                     </div>
@@ -444,25 +419,26 @@
     <section class="max-w-6xl mx-auto px-6 py-16">
         <div class="fade-up">
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-5xl font-bold text-gradient-gold mb-4 font-display tracking-tight">Experience</h2>
-                <p class="text-gray-400">Perjalanan dan kontribusi di dunia development.</p>
+                <h2 class="text-3xl md:text-5xl font-bold text-gradient-gold mb-4 font-display tracking-tight">Pengalaman</h2>
+                <p class="text-gray-400">Beberapa hal yang pernah dan lagi saya kerjain.</p>
             </div>
 
             <div class="space-y-8">
                 <div class="glass rounded-2xl p-8 md:p-10 hover-card relative overflow-hidden group">
                     <div class="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity">
-                        <i class="fas fa-gamepad text-9xl text-cyan-400"></i>
+                        <i class="fas fa-shield-halved text-9xl text-cyan-400"></i>
                     </div>
                     <div class="relative z-10">
                         <div class="flex items-center gap-3 mb-3">
-                            <span class="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-bold border border-cyan-500/20 tracking-wider">2025 — PRESENT</span>
+                            <span class="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-bold border border-cyan-500/20 tracking-wider">SEKARANG</span>
                         </div>
-                        <h3 class="text-2xl font-bold text-white mb-1 font-display">Lead Developer — Cerita Kita RP</h3>
-                        <p class="text-cyan-400/80 mb-6 text-sm font-medium">Fullstack Developer & Server Architect</p>
+                        <h3 class="text-2xl font-bold text-white mb-1 font-display">Anti-Cheat & Server Developer — VXFAMS</h3>
+                        <p class="text-cyan-400/80 mb-6 text-sm font-medium">Fokus keamanan game & arsitektur server PVP</p>
                         <ul class="space-y-3 text-gray-400 text-sm">
-                            <li class="flex items-start"><i class="fas fa-chevron-right text-cyan-500 mt-1 mr-3 text-xs"></i> Merancang arsitektur server roleplay dengan 100+ concurrent players menggunakan Lua & MySQL.</li>
-                            <li class="flex items-start"><i class="fas fa-chevron-right text-cyan-500 mt-1 mr-3 text-xs"></i> Membangun core systems: economy engine, job framework, housing, dan inventory kustom.</li>
-                            <li class="flex items-start"><i class="fas fa-chevron-right text-cyan-500 mt-1 mr-3 text-xs"></i> Optimasi performa, debugging, dan monitoring untuk uptime server 24/7.</li>
+                            <li class="flex items-start"><i class="fas fa-chevron-right text-cyan-500 mt-1 mr-3 text-xs"></i> Bikin sistem anti-silent-aim mulai dari validasi damage sisi shooter sampai grace period buat gerakan flick shot yang wajar.</li>
+                            <li class="flex items-start"><i class="fas fa-chevron-right text-cyan-500 mt-1 mr-3 text-xs"></i> Nyambungin deteksi armor ilegal dan kill-spam ke WaveShield buat proses ban otomatis.</li>
+                            <li class="flex items-start"><i class="fas fa-chevron-right text-cyan-500 mt-1 mr-3 text-xs"></i> Bikin aplikasi C++ terpisah buat monitoring proses game — ngunci fokus window, ngebatasin cursor, sampai blokir Alt+Tab pas match lagi jalan.</li>
+                            <li class="flex items-start"><i class="fas fa-chevron-right text-cyan-500 mt-1 mr-3 text-xs"></i> Benerin dan ngembangin sistem matchmaking/lobby buat mode TDM, termasuk bot AI, map & weapon picker, dan alur pindah antar match.</li>
                         </ul>
                     </div>
                 </div>
@@ -473,13 +449,13 @@
                     </div>
                     <div class="relative z-10">
                         <div class="flex items-center gap-3 mb-3">
-                            <span class="px-3 py-1 rounded-full bg-purple-500/10 text-purple-400 text-xs font-bold border border-purple-500/20 tracking-wider">PREVIOUS</span>
+                            <span class="px-3 py-1 rounded-full bg-purple-500/10 text-purple-400 text-xs font-bold border border-purple-500/20 tracking-wider">SEBELUMNYA</span>
                         </div>
-                        <h3 class="text-2xl font-bold text-white mb-1 font-display">FiveM Developer — +62 Community</h3>
-                        <p class="text-purple-400/80 mb-6 text-sm font-medium">Script Developer & System Integrator</p>
+                        <h3 class="text-2xl font-bold text-white mb-1 font-display">FiveM Scripter & Reverse Engineering</h3>
+                        <p class="text-purple-400/80 mb-6 text-sm font-medium">Memory hooking & eksperimen sistem cheat-detection</p>
                         <ul class="space-y-3 text-gray-400 text-sm">
-                            <li class="flex items-start"><i class="fas fa-chevron-right text-purple-500 mt-1 mr-3 text-xs"></i> Mengembangkan custom scripts dan fitur roleplay unik untuk komunitas.</li>
-                            <li class="flex items-start"><i class="fas fa-chevron-right text-purple-500 mt-1 mr-3 text-xs"></i> Integrasi database MySQL dan manajemen resource untuk stabilitas gameplay.</li>
+                            <li class="flex items-start"><i class="fas fa-chevron-right text-purple-500 mt-1 mr-3 text-xs"></i> Ngulik vtable hooking dan pattern scanning di GTA V buat ngerti gimana cheat kelas berat biasa bikin exploit.</li>
+                            <li class="flex items-start"><i class="fas fa-chevron-right text-purple-500 mt-1 mr-3 text-xs"></i> Dari situ balik lagi ke sisi bertahan: gimana caranya server bisa nangkep pola-pola yang sama sebelum jadi masalah beneran.</li>
                         </ul>
                     </div>
                 </div>
@@ -491,61 +467,61 @@
     <section id="proyek" class="max-w-6xl mx-auto px-6 py-16">
         <div class="fade-up">
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-5xl font-bold text-gradient mb-4 font-display tracking-tight">Featured Projects</h2>
-                <p class="text-gray-400">Karya yang mencerminkan dedikasi dan passion.</p>
+                <h2 class="text-3xl md:text-5xl font-bold text-gradient mb-4 font-display tracking-tight">Proyek yang Lagi/Pernah Digarap</h2>
+                <p class="text-gray-400">Sebagian besar berputar di sekitar satu masalah: gimana bikin PVP tetap fair.</p>
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="glass rounded-2xl overflow-hidden hover-card group">
+                <div class="glass rounded-2xl overflow-hidden hover-card group border-cyan-500/20">
                     <div class="h-52 bg-gradient-to-br from-cyan-500/10 to-blue-600/10 relative overflow-hidden border-b border-white/5">
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <i class="fas fa-project-diagram text-7xl text-cyan-400/20 group-hover:scale-110 transition-transform duration-700"></i>
+                            <i class="fas fa-shield-halved text-7xl text-cyan-400/20 group-hover:scale-110 transition-transform duration-700"></i>
                         </div>
                         <div class="absolute inset-0 bg-gradient-to-t from-[#0f172a] to-transparent"></div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-lg font-bold mb-2 text-cyan-400 font-display">TaskFlow Pro</h3>
-                        <p class="text-gray-400 text-sm mb-5 line-clamp-3">Aplikasi produktivitas real-time berbasis React dengan drag-drop kanban, auth system, dan collaborative workspace.</p>
+                        <h3 class="text-lg font-bold mb-2 text-cyan-400 font-display">antiSA (Anti Silent-Aim)</h3>
+                        <p class="text-gray-400 text-sm mb-5 line-clamp-3">Sistem deteksi silent aim di sisi server. Dari sekadar invincibility gating, berkembang jadi validasi per-tembakan di sisi shooter plus grace period biar flick shot yang wajar nggak ke-flag salah.</p>
                         <div class="flex flex-wrap gap-2">
-                            <span class="px-2.5 py-1 rounded-md bg-cyan-500/10 text-xs text-cyan-300 border border-cyan-500/20">React</span>
-                            <span class="px-2.5 py-1 rounded-md bg-cyan-500/10 text-xs text-cyan-300 border border-cyan-500/20">Firebase</span>
-                            <span class="px-2.5 py-1 rounded-md bg-cyan-500/10 text-xs text-cyan-300 border border-cyan-500/20">Tailwind</span>
+                            <span class="px-2.5 py-1 rounded-md bg-cyan-500/10 text-xs text-cyan-300 border border-cyan-500/20">Lua</span>
+                            <span class="px-2.5 py-1 rounded-md bg-cyan-500/10 text-xs text-cyan-300 border border-cyan-500/20">FiveM</span>
+                            <span class="px-2.5 py-1 rounded-md bg-cyan-500/10 text-xs text-cyan-300 border border-cyan-500/20">WaveShield</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="glass rounded-2xl overflow-hidden hover-card group border-cyan-500/20">
+                <div class="glass rounded-2xl overflow-hidden hover-card group border-purple-500/20">
                     <div class="h-52 bg-gradient-to-br from-purple-500/10 to-pink-600/10 relative overflow-hidden border-b border-white/5">
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <i class="fas fa-server text-7xl text-purple-400/20 group-hover:scale-110 transition-transform duration-700"></i>
+                            <i class="fas fa-desktop text-7xl text-purple-400/20 group-hover:scale-110 transition-transform duration-700"></i>
                         </div>
                         <div class="absolute inset-0 bg-gradient-to-t from-[#0f172a] to-transparent"></div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-lg font-bold mb-2 text-purple-400 font-display">CRP Core Systems</h3>
-                        <p class="text-gray-400 text-sm mb-5 line-clamp-3">Sistem inti Cerita Kita RP — economy engine, job framework, housing system, dan admin dashboard kustom.</p>
+                        <h3 class="text-lg font-bold mb-2 text-purple-400 font-display">Game Overlay & Process Monitor</h3>
+                        <p class="text-gray-400 text-sm mb-5 line-clamp-3">Aplikasi Windows di C++ yang hook ke overlay Steam pakai ImGui + DirectX 11, dipasangkan sama tool monitoring proses yang ngunci fokus, ngebatasin cursor, dan nge-block Alt+Tab selama match FiveM berlangsung.</p>
                         <div class="flex flex-wrap gap-2">
-                            <span class="px-2.5 py-1 rounded-md bg-purple-500/10 text-xs text-purple-300 border border-purple-500/20">Lua</span>
-                            <span class="px-2.5 py-1 rounded-md bg-purple-500/10 text-xs text-purple-300 border border-purple-500/20">MySQL</span>
-                            <span class="px-2.5 py-1 rounded-md bg-purple-500/10 text-xs text-purple-300 border border-purple-500/20">FiveM</span>
+                            <span class="px-2.5 py-1 rounded-md bg-purple-500/10 text-xs text-purple-300 border border-purple-500/20">C++</span>
+                            <span class="px-2.5 py-1 rounded-md bg-purple-500/10 text-xs text-purple-300 border border-purple-500/20">ImGui</span>
+                            <span class="px-2.5 py-1 rounded-md bg-purple-500/10 text-xs text-purple-300 border border-purple-500/20">Win32</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="glass rounded-2xl overflow-hidden hover-card group">
+                <div class="glass rounded-2xl overflow-hidden hover-card group border-yellow-500/20">
                     <div class="h-52 bg-gradient-to-br from-yellow-500/10 to-orange-600/10 relative overflow-hidden border-b border-white/5">
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <i class="fas fa-shopping-bag text-7xl text-yellow-400/20 group-hover:scale-110 transition-transform duration-700"></i>
+                            <i class="fas fa-users-gear text-7xl text-yellow-400/20 group-hover:scale-110 transition-transform duration-700"></i>
                         </div>
                         <div class="absolute inset-0 bg-gradient-to-t from-[#0f172a] to-transparent"></div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-lg font-bold mb-2 text-yellow-400 font-display">NexCommerce API</h3>
-                        <p class="text-gray-400 text-sm mb-5 line-clamp-3">Backend e-commerce modern dengan RESTful API, Stripe payment gateway, dan real-time inventory management.</p>
+                        <h3 class="text-lg font-bold mb-2 text-yellow-400 font-display">vx_rank — Matchmaking & Lobby</h3>
+                        <p class="text-gray-400 text-sm mb-5 line-clamp-3">Sistem matchmaking untuk mode TDM: lobby custom dengan slot tim, undangan pemain, map & weapon picker, plus integrasi ke sf_tdm buat ngatur bot AI dan alur pertandingan.</p>
                         <div class="flex flex-wrap gap-2">
-                            <span class="px-2.5 py-1 rounded-md bg-yellow-500/10 text-xs text-yellow-300 border border-yellow-500/20">Node.js</span>
-                            <span class="px-2.5 py-1 rounded-md bg-yellow-500/10 text-xs text-yellow-300 border border-yellow-500/20">MongoDB</span>
-                            <span class="px-2.5 py-1 rounded-md bg-yellow-500/10 text-xs text-yellow-300 border border-yellow-500/20">Stripe</span>
+                            <span class="px-2.5 py-1 rounded-md bg-yellow-500/10 text-xs text-yellow-300 border border-yellow-500/20">Lua</span>
+                            <span class="px-2.5 py-1 rounded-md bg-yellow-500/10 text-xs text-yellow-300 border border-yellow-500/20">NUI/JS</span>
+                            <span class="px-2.5 py-1 rounded-md bg-yellow-500/10 text-xs text-yellow-300 border border-yellow-500/20">MySQL</span>
                         </div>
                     </div>
                 </div>
@@ -557,14 +533,14 @@
     <section id="kontak" class="max-w-6xl mx-auto px-6 py-16">
         <div class="fade-up">
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-5xl font-bold text-gradient mb-4 font-display tracking-tight">Mari Berkolaborasi</h2>
-                <p class="text-gray-400">Punya ide menarik? Mari wujudkan bersama.</p>
+                <h2 class="text-3xl md:text-5xl font-bold text-gradient mb-4 font-display tracking-tight">Kontak</h2>
+                <p class="text-gray-400">Butuh anticheat, sistem PVP, atau overlay dibenerin? Ngobrol dulu aja.</p>
             </div>
 
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div>
-                    <h3 class="text-2xl md:text-3xl font-bold mb-5 text-white font-display leading-tight">Membangun sesuatu yang luar biasa.</h3>
-                    <p class="text-gray-400 mb-10 leading-relaxed">Saya terbuka untuk diskusi proyek, kolaborasi, maupun peluang freelance. Hubungi saya melalui email atau form di samping.</p>
+                    <h3 class="text-2xl md:text-3xl font-bold mb-5 text-white font-display leading-tight">Kalau ada masalah cheater atau server nggak stabil, boleh cerita dulu.</h3>
+                    <p class="text-gray-400 mb-10 leading-relaxed">Saya kebuka buat kerja sama, ngobrolin sistem anticheat server kamu, atau sekadar diskusi soal reverse engineering. Chat aja lewat email atau form di samping.</p>
 
                     <div class="space-y-6">
                         <div class="flex items-center group">
@@ -630,7 +606,7 @@
                     <div class="font-bold text-xl tracking-tight text-white font-display mb-1">
                         <span class="text-cyan-400">&lt;</span>Botline<span class="text-cyan-400">/&gt;</span>
                     </div>
-                    <p class="text-gray-600 text-xs">Building the digital future, one line at a time.</p>
+                    <p class="text-gray-600 text-xs">Ngejaga PVP tetap fair, satu baris kode dalam satu waktu.</p>
                 </div>
 
                 <div class="flex space-x-3">
