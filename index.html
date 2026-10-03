@@ -4,498 +4,907 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Muhammad Nor Abdillah | Botline</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="description" content="Portfolio Muhammad Nor Abdillah (Botline) — Fullstack & FiveM Developer di balik Cerita Kita RP dan Hommi Roleplay.">
+    <meta name="theme-color" content="#07070d">
+    <link rel="icon" type="image/png" href="android-icon-192x192.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Sora', 'system-ui', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace']
+                    }
+                }
+            }
+        };
+    </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
-
         :root {
-            --bg-primary: #050a14;
-            --accent-cyan: #00f2ff;
-            --accent-purple: #bd00ff;
-            --accent-pink: #ff2a6d;
+            --bg: #07070d;
+            --bg-2: #0d0d17;
+            --surface: rgba(255, 255, 255, 0.035);
+            --surface-2: rgba(255, 255, 255, 0.06);
+            --line: rgba(255, 255, 255, 0.08);
+            --line-2: rgba(255, 255, 255, 0.14);
+            --text: #ededf5;
+            --muted: #9a9ab0;
+            --dim: #5f5f75;
+            --violet: #8b5cf6;
+            --cyan: #22d3ee;
+            --pink: #f472b6;
+            --amber: #fbbf24;
+            --orange: #fb7185;
+            --green: #34d399;
         }
+
+        * { -webkit-tap-highlight-color: transparent; }
+
+        html { scroll-behavior: smooth; scroll-padding-top: 88px; }
 
         body {
-            font-family: 'Fira Code', monospace;
-            background-color: var(--bg-primary);
-            color: #e2e8f0;
+            font-family: 'Sora', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
             overflow-x: hidden;
-            scroll-behavior: smooth;
         }
 
-        h1, h2, h3, h4, .font-display {
-            font-family: 'Space Grotesk', sans-serif;
-        }
+        ::selection { background: rgba(139, 92, 246, 0.35); color: #fff; }
 
-        /* Aurora Background */
-        .aurora {
+        /* ---------- Background ---------- */
+        .bg-scene {
             position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
+            inset: 0;
+            z-index: -2;
+            background:
+                radial-gradient(60rem 40rem at 85% -10%, rgba(139, 92, 246, 0.18), transparent 60%),
+                radial-gradient(50rem 35rem at -10% 20%, rgba(34, 211, 238, 0.12), transparent 60%),
+                radial-gradient(45rem 30rem at 50% 110%, rgba(244, 114, 182, 0.10), transparent 60%),
+                var(--bg);
+        }
+        .bg-grid {
+            position: fixed;
+            inset: 0;
             z-index: -1;
-            overflow: hidden;
-            background: radial-gradient(circle at 50% 0%, #0f172a 0%, #050a14 100%);
+            background-image:
+                linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+            background-size: 56px 56px;
+            mask-image: radial-gradient(ellipse at 50% 0%, #000 20%, transparent 75%);
+            -webkit-mask-image: radial-gradient(ellipse at 50% 0%, #000 20%, transparent 75%);
+            pointer-events: none;
+        }
+        .noise {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            opacity: 0.035;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
         }
 
-        .aurora-blob {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(120px);
-            opacity: 0.35;
-            animation: float 25s infinite ease-in-out;
+        /* ---------- Progress ---------- */
+        #progress {
+            position: fixed;
+            top: 0; left: 0;
+            height: 2px;
+            width: 0;
+            z-index: 60;
+            background: linear-gradient(90deg, var(--cyan), var(--violet), var(--pink));
+            box-shadow: 0 0 12px rgba(139, 92, 246, 0.6);
         }
 
-        .blob-1 { width: 600px; height: 600px; background: #4c1d95; top: -15%; left: -15%; animation-delay: 0s; }
-        .blob-2 { width: 500px; height: 500px; background: #0891b2; top: 30%; right: -10%; animation-delay: -8s; }
-        .blob-3 { width: 400px; height: 400px; background: #be185d; bottom: -10%; left: 25%; animation-delay: -16s; }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(40px, -60px) scale(1.15); }
-            66% { transform: translate(-30px, 30px) scale(0.9); }
+        /* ---------- Nav ---------- */
+        .nav-wrap {
+            transition: background .3s ease, border-color .3s ease, backdrop-filter .3s ease;
+            border-bottom: 1px solid transparent;
         }
-
-        /* Glassmorphism */
-        .glass {
-            background: rgba(15, 23, 42, 0.55);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.03);
+        .nav-wrap.scrolled {
+            background: rgba(7, 7, 13, 0.72);
+            backdrop-filter: blur(18px) saturate(140%);
+            -webkit-backdrop-filter: blur(18px) saturate(140%);
+            border-color: var(--line);
         }
-
-        .glass-strong {
-            background: rgba(15, 23, 42, 0.75);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        /* Terminal */
-        .terminal-window {
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04);
-        }
-
-        .code-content {
-            counter-reset: line;
-        }
-
-        .code-line {
-            display: block;
-            line-height: 1.7;
-            font-size: 0.9rem;
-            white-space: pre;
-        }
-
-        .code-line::before {
-            counter-increment: line;
-            content: counter(line);
-            display: inline-block;
-            width: 2.5rem;
-            margin-right: 1.5rem;
-            text-align: right;
-            color: #475569;
-            user-select: none;
-            font-size: 0.8rem;
-        }
-
-        .keyword { color: #c792ea; }
-        .function { color: #82aaff; }
-        .string { color: #ecc48d; }
-        .comment { color: #546e7a; font-style: italic; }
-        .operator { color: #7fdbca; }
-        .type { color: #ffcb8b; }
-        .var { color: #f78c6c; }
-
-        /* Gradient Text */
-        .text-gradient {
-            background: linear-gradient(135deg, #00f2ff, #bd00ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .text-gradient-gold {
-            background: linear-gradient(135deg, #ffd700, #ffaa00);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* Glows */
-        .glow-cyan { text-shadow: 0 0 25px rgba(0, 242, 255, 0.4); }
-        .glow-purple { text-shadow: 0 0 25px rgba(189, 0, 255, 0.4); }
-
-        /* Cards */
-        .hover-card {
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .hover-card:hover {
-            transform: translateY(-10px) scale(1.01);
-            box-shadow: 0 24px 48px rgba(0,0,0,0.5), 0 0 40px rgba(0, 242, 255, 0.08);
-            border-color: rgba(0, 242, 255, 0.25);
-        }
-
-        /* Bento Grid */
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1rem;
-        }
-
-        .bento-item {
-            border-radius: 20px;
-            padding: 1.5rem;
-            background: rgba(30, 41, 59, 0.35);
-            border: 1px solid rgba(255,255,255,0.04);
-            transition: all 0.4s ease;
-        }
-        .bento-item:hover {
-            background: rgba(30, 41, 59, 0.65);
-            border-color: rgba(255,255,255,0.12);
-            transform: translateY(-4px);
-        }
-
-        /* Typewriter */
-        .typewriter {
-            overflow: hidden;
-            border-right: .15em solid #00f2ff;
-            white-space: nowrap;
-            letter-spacing: .15em;
-            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
-            display: inline-block;
-        }
-
-        @keyframes typing { from { width: 0 } to { width: 100% } }
-        @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: #00f2ff; } }
-
-        /* Scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #050a14; }
-        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: #475569; }
-
-        /* Fade Up */
-        .fade-up {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 1s ease-out, transform 1s ease-out;
-        }
-        .fade-up.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Pulse Dot */
-        .pulse-dot {
-            width: 8px;
-            height: 8px;
-            background: #00ff88;
-            border-radius: 50%;
-            box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.7);
-            animation: pulse-dot 2.5s infinite;
-        }
-        @keyframes pulse-dot {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.7); }
-            70% { transform: scale(1); box-shadow: 0 0 0 12px rgba(0, 255, 136, 0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 136, 0); }
-        }
-
-        /* Mesh gradient border for logo */
-        .logo-glow {
+        .nav-link {
             position: relative;
+            color: var(--muted);
+            transition: color .2s ease;
         }
-        .logo-glow::before {
+        .nav-link:hover, .nav-link.active { color: #fff; }
+        .nav-link::after {
             content: '';
             position: absolute;
-            inset: -2px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, #00f2ff, #bd00ff, #ff2a6d);
-            z-index: -1;
-            opacity: 0.5;
-            filter: blur(12px);
-            animation: logo-glow 4s ease-in-out infinite alternate;
+            left: 50%; bottom: -6px;
+            width: 0; height: 2px;
+            border-radius: 2px;
+            background: linear-gradient(90deg, var(--cyan), var(--violet));
+            transition: width .25s ease, left .25s ease;
         }
-        @keyframes logo-glow {
-            from { opacity: 0.3; transform: scale(0.95); }
-            to { opacity: 0.6; transform: scale(1.05); }
+        .nav-link.active::after { width: 100%; left: 0; }
+
+        #mobileMenu {
+            transition: opacity .25s ease, transform .25s ease;
+        }
+        #mobileMenu.hidden-menu {
+            opacity: 0;
+            transform: translateY(-8px);
+            pointer-events: none;
         }
 
-        /* Section eyebrow */
+        /* ---------- Common ---------- */
+        .card {
+            position: relative;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: border-color .35s ease, transform .35s ease, background .35s ease;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,0.07), transparent 45%);
+            opacity: 0;
+            transition: opacity .35s ease;
+            pointer-events: none;
+        }
+        .card:hover { border-color: var(--line-2); }
+        .card:hover::before { opacity: 1; }
+        .card.lift:hover { transform: translateY(-4px); }
+
+        .grad-text {
+            background: linear-gradient(120deg, #fff 0%, #c4b5fd 40%, var(--cyan) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .grad-warm {
+            background: linear-gradient(120deg, var(--amber), var(--orange));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .grad-cool {
+            background: linear-gradient(120deg, var(--cyan), var(--violet));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
         .eyebrow {
-            font-size: 0.7rem;
-            letter-spacing: 0.25em;
-            color: #64748b;
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .72rem;
+            letter-spacing: .18em;
             text-transform: uppercase;
-            font-weight: 600;
+            color: var(--muted);
+        }
+        .eyebrow .bar {
+            width: 22px; height: 1px;
+            background: linear-gradient(90deg, var(--cyan), var(--violet));
         }
 
-        /* Subtle divider */
-        .soft-divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+            padding: .4rem .75rem;
+            border-radius: 999px;
+            font-size: .75rem;
+            font-weight: 500;
+            color: #d6d6e4;
+            background: var(--surface-2);
+            border: 1px solid var(--line);
+            transition: border-color .2s ease, color .2s ease, background .2s ease;
+        }
+        .chip:hover { border-color: var(--line-2); color: #fff; background: rgba(255,255,255,0.09); }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .6rem;
+            padding: .85rem 1.4rem;
+            border-radius: 14px;
+            font-size: .9rem;
+            font-weight: 600;
+            transition: transform .2s ease, box-shadow .25s ease, background .25s ease, border-color .25s ease;
+        }
+        .btn:active { transform: scale(.98); }
+        .btn-primary {
+            color: #0b0b12;
+            background: linear-gradient(120deg, #fff, #e4dcff);
+            box-shadow: 0 10px 30px -10px rgba(139, 92, 246, 0.7);
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 40px -12px rgba(139, 92, 246, 0.9); }
+        .btn-ghost {
+            color: #fff;
+            background: var(--surface);
+            border: 1px solid var(--line-2);
+        }
+        .btn-ghost:hover { background: var(--surface-2); border-color: rgba(255,255,255,0.25); transform: translateY(-2px); }
+
+        .live-dot {
+            position: relative;
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: var(--green);
+            flex-shrink: 0;
+        }
+        .live-dot::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: var(--green);
+            animation: ping 2s cubic-bezier(0, 0, .2, 1) infinite;
+        }
+        @keyframes ping { 75%, 100% { transform: scale(2.6); opacity: 0; } }
+
+        /* ---------- Hero ---------- */
+        .hero-title {
+            font-size: clamp(2.6rem, 7vw, 5.4rem);
+            line-height: 1.02;
+            letter-spacing: -0.035em;
+            font-weight: 800;
+        }
+        .role-rotator {
+            display: inline-grid;
+            vertical-align: bottom;
+            overflow: hidden;
+            height: 1.25em;
+        }
+        .role-rotator span {
+            grid-area: 1 / 1;
+            transform: translateY(110%);
+            opacity: 0;
+            transition: transform .55s cubic-bezier(.2,.8,.2,1), opacity .55s ease;
+        }
+        .role-rotator span.on { transform: translateY(0); opacity: 1; }
+        .role-rotator span.off { transform: translateY(-110%); opacity: 0; }
+
+
+        /* ---------- Terminal ---------- */
+        .terminal {
+            background: rgba(10, 10, 18, 0.85);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            box-shadow: 0 40px 80px -30px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.02) inset;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .term-tab {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .72rem;
+            color: var(--dim);
+            padding: .55rem .9rem;
+            border-right: 1px solid var(--line);
+            cursor: pointer;
+            transition: color .2s ease, background .2s ease;
+            white-space: nowrap;
+        }
+        .term-tab.active { color: #fff; background: rgba(255,255,255,0.04); box-shadow: inset 0 -2px 0 var(--violet); }
+        .term-tab:hover { color: #fff; }
+        .code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .8rem;
+            line-height: 1.75;
+            counter-reset: ln;
+        }
+        .code .l { display: block; white-space: pre; }
+        .code .l::before {
+            counter-increment: ln;
+            content: counter(ln);
+            display: inline-block;
+            width: 1.8rem;
+            margin-right: 1rem;
+            text-align: right;
+            color: #3a3a50;
+            user-select: none;
+        }
+        .k { color: #c4a7ff; }
+        .f { color: #7dd3fc; }
+        .s { color: #fcd34d; }
+        .c { color: #5c5c78; font-style: italic; }
+        .p { color: #f9a8d4; }
+        .n { color: #6ee7b7; }
+        .caret {
+            display: inline-block;
+            width: 8px; height: 1em;
+            background: var(--cyan);
+            vertical-align: text-bottom;
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* ---------- Marquee ---------- */
+        .marquee {
+            mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+            -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+        }
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            gap: 2.5rem;
+            animation: marquee 38s linear infinite;
+        }
+        .marquee:hover .marquee-track { animation-play-state: paused; }
+        @keyframes marquee { to { transform: translateX(-50%); } }
+
+        /* ---------- Server Cards ---------- */
+        .server-card { border-radius: 28px; }
+        .server-card .glow {
+            position: absolute;
+            width: 420px; height: 420px;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: .35;
+            pointer-events: none;
+            transition: opacity .5s ease;
+        }
+        .server-card:hover .glow { opacity: .55; }
+        .server-logo {
+            width: 92px; height: 92px;
+            border-radius: 24px;
+            display: grid;
+            place-items: center;
+            background: #0b0b14;
+            border: 1px solid var(--line-2);
+            box-shadow: 0 20px 40px -18px rgba(0,0,0,.9);
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .server-logo img { width: 100%; height: 100%; object-fit: contain; padding: 12px; }
+        .hommi-mark {
+            width: 100%; height: 100%;
+            display: grid;
+            place-items: center;
+            font-weight: 800;
+            font-size: 2.4rem;
+            letter-spacing: -0.05em;
+            color: #fff;
+            background:
+                radial-gradient(circle at 30% 20%, rgba(255,255,255,.35), transparent 45%),
+                linear-gradient(140deg, #fbbf24 0%, #fb7185 55%, #a855f7 100%);
+        }
+        .stat-box {
+            border-radius: 16px;
+            padding: .9rem 1rem;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--line);
+        }
+        .feature-row {
+            display: flex;
+            gap: .75rem;
+            align-items: flex-start;
+            font-size: .875rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+        .feature-row i { margin-top: .3rem; font-size: .7rem; }
+
+        /* ---------- Timeline ---------- */
+        .timeline { position: relative; }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px; top: 8px; bottom: 8px;
+            width: 1px;
+            background: linear-gradient(180deg, var(--violet), var(--amber), rgba(255,255,255,0.05));
+        }
+        .tl-dot {
+            position: absolute;
+            left: 0; top: 1.75rem;
+            width: 31px; height: 31px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: var(--bg-2);
+            border: 1px solid var(--line-2);
+            font-size: .7rem;
+        }
+
+        /* ---------- Form ---------- */
+        .field {
+            width: 100%;
+            padding: .9rem 1rem;
+            border-radius: 14px;
+            background: rgba(0,0,0,0.25);
+            border: 1px solid var(--line);
+            color: #fff;
+            font-size: .9rem;
+            transition: border-color .2s ease, background .2s ease, box-shadow .2s ease;
+        }
+        .field::placeholder { color: var(--dim); }
+        .field:focus {
+            outline: none;
+            border-color: rgba(139, 92, 246, 0.6);
+            background: rgba(0,0,0,0.35);
+            box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.12);
+        }
+        .label {
+            display: block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .68rem;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: var(--dim);
+            margin-bottom: .5rem;
+        }
+
+        /* ---------- Reveal ---------- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity .9s cubic-bezier(.2,.8,.2,1), transform .9s cubic-bezier(.2,.8,.2,1);
+            transition-delay: var(--d, 0s);
+        }
+        .reveal.in { opacity: 1; transform: none; }
+
+        /* ---------- Scrollbar ---------- */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: #24243a; border-radius: 8px; border: 2px solid var(--bg); }
+        ::-webkit-scrollbar-thumb:hover { background: #34345a; }
+
+        /* ---------- Toast ---------- */
+        #toast {
+            transition: opacity .3s ease, transform .3s ease;
+        }
+        #toast.hide { opacity: 0; transform: translate(-50%, 16px); pointer-events: none; }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation: none !important; transition: none !important; }
+            .reveal { opacity: 1; transform: none; }
+            html { scroll-behavior: auto; }
         }
     </style>
 </head>
-<body class="min-h-screen antialiased selection:bg-cyan-500/30 selection:text-cyan-50">
+<body class="min-h-screen antialiased">
 
-    <!-- Aurora Background -->
-    <div class="aurora">
-        <div class="aurora-blob blob-1"></div>
-        <div class="aurora-blob blob-2"></div>
-        <div class="aurora-blob blob-3"></div>
-    </div>
+    <div class="bg-scene"></div>
+    <div class="bg-grid"></div>
+    <div class="noise"></div>
+    <div id="progress"></div>
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 glass-strong border-b border-white/5">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="font-bold text-xl tracking-tight text-white font-display">
-                <span class="text-cyan-400">&lt;</span>Botline<span class="text-cyan-400">/&gt;</span>
-            </div>
-            <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-400">
-                <a href="#tentang" class="hover:text-cyan-400 transition-colors">Tentang</a>
-                <a href="#current" class="hover:text-cyan-400 transition-colors">Current</a>
-                <a href="#keahlian" class="hover:text-cyan-400 transition-colors">Keahlian</a>
-                <a href="#proyek" class="hover:text-cyan-400 transition-colors">Proyek</a>
-                <a href="#kontak" class="hover:text-cyan-400 transition-colors">Kontak</a>
-            </div>
-            <div class="hidden md:flex items-center px-4 py-2 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 text-sm">
-                <span class="pulse-dot mr-2"></span>
-                Open for Work
-            </div>
-        </div>
-    </nav>
+    <!-- ================= NAV ================= -->
+    <header id="nav" class="nav-wrap fixed top-0 inset-x-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 h-[72px] flex items-center justify-between">
+            <a href="#home" class="flex items-center gap-3 group">
+                <span class="w-9 h-9 rounded-xl grid place-items-center bg-white text-[#0b0b12] font-extrabold text-sm transition-transform group-hover:rotate-[-8deg]">B</span>
+                <span class="font-bold tracking-tight text-white">Botline<span class="text-violet-400">.</span></span>
+            </a>
 
-    <div class="h-20"></div>
+            <nav class="hidden md:flex items-center gap-8 text-sm">
+                <a href="#server" class="nav-link">Server RP</a>
+                <a href="#tentang" class="nav-link">Tentang</a>
+                <a href="#keahlian" class="nav-link">Keahlian</a>
+                <a href="#pengalaman" class="nav-link">Pengalaman</a>
+                <a href="#proyek" class="nav-link">Proyek</a>
+                <a href="#kontak" class="nav-link">Kontak</a>
+            </nav>
 
-    <!-- Terminal Hero -->
-    <div class="max-w-6xl mx-auto px-6 pt-10 pb-24">
-        <div class="terminal-window glass">
-            <div class="flex items-center px-5 py-3.5 border-b border-white/10 bg-white/5">
-                <div class="flex space-x-2 mr-4">
-                    <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
-                    <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-                    <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
-                </div>
-                <div class="text-xs text-gray-500 font-mono">botline.js — portfolio@latest</div>
-            </div>
-
-            <div class="p-6 md:p-10 overflow-x-auto">
-                <div class="code-content font-mono">
-                    <span class="code-line"><span class="keyword">const</span> <span class="var">portfolio</span> = {</span>
-                    <span class="code-line">  <span class="type">nama</span>: <span class="string">"Muhammad Nor Abdillah"</span>, <span class="comment">// panggil aja Botline</span></span>
-                    <span class="code-line">  <span class="type">pendidikan</span>: <span class="string">"Teknik Informatika"</span>,</span>
-                    <span class="code-line">  <span class="type">status</span>: <span class="string">"Mahasiswa & Fullstack Developer"</span>,</span>
-                    <span class="code-line">  <span class="type">minat</span>: [</span>
-                    <span class="code-line">    <span class="string">"Fullstack Web"</span>,</span>
-                    <span class="code-line">    <span class="string">"UI/UX Design"</span>,</span>
-                    <span class="code-line">    <span class="string">"FiveM Development"</span>,</span>
-                    <span class="code-line">    <span class="string">"Game Systems"</span></span>
-                    <span class="code-line">  ],</span>
-                    <span class="code-line">  <span class="type">keahlian</span>: [</span>
-                    <span class="code-line">    <span class="string">"HTML/CSS/JS"</span>,</span>
-                    <span class="code-line">    <span class="string">"React / Next.js"</span>,</span>
-                    <span class="code-line">    <span class="string">"Node.js / Python"</span>,</span>
-                    <span class="code-line">    <span class="string">"Lua / FiveM"</span>,</span>
-                    <span class="code-line">    <span class="string">"Tailwind / TypeScript"</span>,</span>
-                    <span class="code-line">    <span class="string">"MySQL / MongoDB"</span></span>
-                    <span class="code-line">  ],</span>
-                    <span class="code-line">  <span class="type">pengalaman</span>: [</span>
-                    <span class="code-line">    <span class="string">"Fullstack Dev — Cerita Kita RP"</span>,</span>
-                    <span class="code-line">    <span class="string">"FiveM Developer — +62 Community"</span>,</span>
-                    <span class="code-line">    <span class="string">"Server Architecture & Optimization"</span></span>
-                    <span class="code-line">  ],</span>
-                    <span class="code-line">  <span class="type">kontak</span>: {</span>
-                    <span class="code-line">    <span class="type">email</span>: <span class="string">"norabdillah95@gmail.com"</span>,</span>
-                    <span class="code-line">    <span class="type">github</span>: <span class="string">"github.com/aderfa"</span>,</span>
-                    <span class="code-line">    <span class="type">linkedin</span>: <span class="string">"Muhammad Nor Abdillah"</span></span>
-                    <span class="code-line">  }</span>
-                    <span class="code-line">};</span>
-                    <span class="code-line"></span>
-                    <span class="code-line"><span class="keyword">function</span> <span class="function">tentangSaya</span>() {</span>
-                    <span class="code-line">  <span class="comment">// masih belajar, masih ngoprek, masih betah begadang buat debug</span></span>
-                    <span class="code-line">  <span class="keyword">return</span> <span class="string">"Suka ngerjain hal yang bisa langsung dicoba dan dipakai orang. Sehari-hari muter di web dan server FiveM, dan paling senang kalau kodenya rapi tapi tetep jalan mulus di lapangan."</span>;</span>
-                    <span class="code-line">}</span>
-                </div>
-
-                <div class="mt-8 flex items-center font-mono">
-                    <span class="text-green-400 mr-3">➜</span>
-                    <span class="typewriter text-cyan-300">node botline.js</span>
-                </div>
-
-                <div class="mt-6 space-y-1.5 font-mono text-sm text-green-300/90">
-                    <div class="flex items-center"><span class="mr-2 text-cyan-500">›</span> Initializing portfolio v2026...</div>
-                    <div class="flex items-center"><span class="mr-2 text-cyan-500">›</span> Selamat datang di ruang digital Botline.</div>
-                    <div class="flex items-center"><span class="mr-2 text-cyan-500">›</span> Lagi fokus ngerjain Cerita Kita RP.</div>
-                    <div class="flex items-center"><span class="mr-2 text-cyan-500">›</span> Siap kalau ada yang mau ngobrolin proyek.</div>
-                </div>
+            <div class="flex items-center gap-3">
+                <a href="#kontak" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium text-emerald-300 bg-emerald-400/10 border border-emerald-400/20">
+                    <span class="live-dot"></span> Open for Work
+                </a>
+                <button id="menuBtn" class="md:hidden w-10 h-10 rounded-xl grid place-items-center border border-white/10 bg-white/5 text-white" aria-label="Buka menu" aria-expanded="false">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
         </div>
-    </div>
 
-    <!-- Currently Developing: Cerita Kita RP -->
-    <section id="current" class="max-w-6xl mx-auto px-6 py-16">
-        <div class="fade-up">
-            <div class="flex items-center justify-center mb-4">
-                <span class="px-4 py-1.5 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 text-xs font-bold tracking-widest uppercase flex items-center">
-                    <span class="pulse-dot mr-2"></span>
-                    Sedang Dikerjakan
-                </span>
-            </div>
-            <h2 class="text-3xl md:text-5xl font-bold text-center mb-14 text-gradient font-display tracking-tight">Cerita Kita RP</h2>
+        <div id="mobileMenu" class="hidden-menu md:hidden absolute top-[72px] inset-x-4 rounded-2xl border border-white/10 bg-[#0d0d17]/95 backdrop-blur-xl p-3 shadow-2xl">
+            <a href="#server" class="m-link flex items-center justify-between px-4 py-3 rounded-xl text-gray-300 hover:bg-white/5 hover:text-white">Server RP <i class="fas fa-arrow-right text-xs opacity-40"></i></a>
+            <a href="#tentang" class="m-link flex items-center justify-between px-4 py-3 rounded-xl text-gray-300 hover:bg-white/5 hover:text-white">Tentang <i class="fas fa-arrow-right text-xs opacity-40"></i></a>
+            <a href="#keahlian" class="m-link flex items-center justify-between px-4 py-3 rounded-xl text-gray-300 hover:bg-white/5 hover:text-white">Keahlian <i class="fas fa-arrow-right text-xs opacity-40"></i></a>
+            <a href="#pengalaman" class="m-link flex items-center justify-between px-4 py-3 rounded-xl text-gray-300 hover:bg-white/5 hover:text-white">Pengalaman <i class="fas fa-arrow-right text-xs opacity-40"></i></a>
+            <a href="#proyek" class="m-link flex items-center justify-between px-4 py-3 rounded-xl text-gray-300 hover:bg-white/5 hover:text-white">Proyek <i class="fas fa-arrow-right text-xs opacity-40"></i></a>
+            <a href="#kontak" class="m-link flex items-center justify-between px-4 py-3 rounded-xl text-gray-300 hover:bg-white/5 hover:text-white">Kontak <i class="fas fa-arrow-right text-xs opacity-40"></i></a>
+        </div>
+    </header>
 
-            <div class="glass rounded-3xl p-8 md:p-14 hover-card flex flex-col md:flex-row items-center gap-10 md:gap-16">
-                <div class="w-full md:w-2/5 flex justify-center">
-                    <div class="relative logo-glow">
-                        <div class="absolute inset-0 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full blur-xl opacity-30 animate-pulse"></div>
-                        <img src="https://ceritakitarp.com/logo.png" alt="Cerita Kita RP" class="relative w-44 h-44 md:w-56 md:h-56 object-contain rounded-full bg-[#0b1120] p-6 border border-white/10 shadow-2xl">
+    <main>
+
+    <!-- ================= HERO ================= -->
+    <section id="home" class="relative max-w-6xl mx-auto px-4 sm:px-6 pt-32 md:pt-40 pb-16">
+        <div class="grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-12 lg:gap-14 items-center">
+            <div>
+                <div class="reveal">
+                    <span class="inline-flex items-center gap-2 pl-1.5 pr-3 py-1.5 rounded-full border border-white/10 bg-white/[0.04] text-xs text-gray-300">
+                        <span class="px-2 py-0.5 rounded-full bg-violet-500/20 text-violet-200 font-medium">2026</span>
+                        Lagi garap Cerita Kita RP &amp; Hommi Roleplay
+                    </span>
+                </div>
+
+                <h1 class="hero-title mt-7 reveal" style="--d:.08s">
+                    Halo, saya <span class="grad-text">Botline</span>.
+                </h1>
+
+                <p class="mt-5 text-xl md:text-2xl font-semibold text-gray-300 reveal" style="--d:.16s">
+                    <span class="text-gray-500">Saya</span>
+                    <span class="role-rotator" id="roles">
+                        <span class="on grad-cool">Fullstack Developer</span>
+                        <span class="grad-warm">FiveM Developer</span>
+                        <span class="grad-cool">Server Architect</span>
+                        <span class="grad-warm">UI/UX Enthusiast</span>
+                    </span>
+                </p>
+
+                <p class="mt-6 text-gray-400 leading-relaxed max-w-xl reveal" style="--d:.24s">
+                    Muhammad Nor Abdillah — mahasiswa Teknik Informatika yang suka ngerjain hal yang bisa langsung dicoba dan dipakai orang. Sehari-hari muter di web dan server FiveM, paling senang kalau kodenya rapi tapi tetep jalan mulus di lapangan.
+                </p>
+
+                <div class="mt-9 flex flex-wrap gap-3 reveal" style="--d:.32s">
+                    <a href="#server" class="btn btn-primary">Lihat Server RP <i class="fas fa-arrow-down text-xs"></i></a>
+                    <a href="#kontak" class="btn btn-ghost"><i class="far fa-paper-plane text-xs"></i> Hubungi Saya</a>
+                </div>
+
+                <div class="mt-12 grid grid-cols-3 gap-3 max-w-md reveal" style="--d:.4s">
+                    <div class="stat-box">
+                        <div class="text-2xl font-bold text-white"><span class="count" data-to="2">0</span></div>
+                        <div class="text-[11px] text-gray-500 mt-1 leading-tight">Server RP digarap</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="text-2xl font-bold text-white"><span class="count" data-to="100">0</span>+</div>
+                        <div class="text-[11px] text-gray-500 mt-1 leading-tight">Player online bareng</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="text-2xl font-bold text-white">24/7</div>
+                        <div class="text-[11px] text-gray-500 mt-1 leading-tight">Uptime yang dikejar</div>
                     </div>
                 </div>
-                <div class="w-full md:w-3/5">
-                    <h3 class="text-2xl md:text-3xl font-bold mb-4 text-white font-display">Fullstack Developer & Server Architect</h3>
-                    <p class="text-gray-400 mb-6 leading-relaxed text-sm md:text-base">
-                        Saat ini lagi sibuk garap <strong class="text-cyan-400">Cerita Kita RP</strong>, server roleplay FiveM yang dibangun dari nol dengan niat serius: cerita yang dalam, ekonomi yang masuk akal, dan server yang nggak nge-lag walau rame. Saya yang pegang core system-nya, mulai dari scripting Lua, ngatur database, sampai mastiin performanya tetap stabil pas ratusan player online bareng.
+            </div>
+
+            <!-- Terminal -->
+            <div class="reveal" style="--d:.2s">
+                <div class="terminal overflow-hidden">
+                    <div class="flex items-center border-b border-white/[0.06]">
+                        <div class="flex gap-1.5 px-4">
+                            <span class="w-3 h-3 rounded-full bg-[#ff5f57]"></span>
+                            <span class="w-3 h-3 rounded-full bg-[#febc2e]"></span>
+                            <span class="w-3 h-3 rounded-full bg-[#28c840]"></span>
+                        </div>
+                        <div class="flex overflow-x-auto" role="tablist">
+                            <button class="term-tab active" data-tab="t-profile">botline.js</button>
+                            <button class="term-tab" data-tab="t-server">servers.lua</button>
+                        </div>
+                    </div>
+
+                    <div class="p-5 overflow-x-auto">
+                        <div id="t-profile" class="code term-pane">
+<span class="l"><span class="k">const</span> <span class="f">botline</span> <span class="p">=</span> {</span>
+<span class="l">  nama: <span class="s">"Muhammad Nor Abdillah"</span>,</span>
+<span class="l">  pendidikan: <span class="s">"Teknik Informatika"</span>,</span>
+<span class="l">  status: <span class="s">"Mahasiswa &amp; Fullstack Dev"</span>,</span>
+<span class="l">  stack: [<span class="s">"React"</span>, <span class="s">"Next.js"</span>, <span class="s">"Node"</span>, <span class="s">"Lua"</span>],</span>
+<span class="l">  server: [</span>
+<span class="l">    <span class="s">"Cerita Kita RP"</span>,</span>
+<span class="l">    <span class="s">"Hommi Roleplay"</span></span>
+<span class="l">  ],</span>
+<span class="l">  kopi: <span class="n">Infinity</span>, <span class="c">// buat begadang debug</span></span>
+<span class="l">};</span>
+<span class="l"></span>
+<span class="l"><span class="k">export default</span> botline;</span>
+                        </div>
+                        <div id="t-server" class="code term-pane hidden">
+<span class="l"><span class="c">-- server yang lagi saya pegang</span></span>
+<span class="l"><span class="k">local</span> Servers <span class="p">=</span> {</span>
+<span class="l">  {</span>
+<span class="l">    name <span class="p">=</span> <span class="s">"Cerita Kita RP"</span>,</span>
+<span class="l">    role <span class="p">=</span> <span class="s">"Lead Developer"</span>,</span>
+<span class="l">    status <span class="p">=</span> <span class="s">"live"</span></span>
+<span class="l">  },</span>
+<span class="l">  {</span>
+<span class="l">    name <span class="p">=</span> <span class="s">"Hommi Roleplay"</span>,</span>
+<span class="l">    role <span class="p">=</span> <span class="s">"FiveM Developer"</span>,</span>
+<span class="l">    status <span class="p">=</span> <span class="s">"live"</span></span>
+<span class="l">  }</span>
+<span class="l">}</span>
+                        </div>
+
+                        <div class="mt-5 pt-4 border-t border-white/[0.06] font-mono text-xs space-y-1.5">
+                            <div class="flex items-center gap-2"><span class="text-emerald-400">➜</span> <span class="text-cyan-300">~</span> <span id="typed" class="text-gray-200"></span><span class="caret"></span></div>
+                            <div id="termOut" class="space-y-1 text-gray-500"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Marquee -->
+        <div class="mt-20 marquee overflow-hidden reveal">
+            <div class="marquee-track text-gray-500 text-sm font-medium">
+                <span class="flex items-center gap-2"><i class="fab fa-react text-cyan-400"></i> React</span>
+                <span class="flex items-center gap-2"><i class="fas fa-n text-white"></i> Next.js</span>
+                <span class="flex items-center gap-2"><i class="fab fa-js text-yellow-300"></i> TypeScript</span>
+                <span class="flex items-center gap-2"><i class="fab fa-node-js text-green-400"></i> Node.js</span>
+                <span class="flex items-center gap-2"><i class="fab fa-python text-blue-300"></i> Python</span>
+                <span class="flex items-center gap-2"><i class="fas fa-moon text-indigo-300"></i> Lua</span>
+                <span class="flex items-center gap-2"><i class="fas fa-gamepad text-pink-400"></i> FiveM</span>
+                <span class="flex items-center gap-2"><i class="fas fa-database text-orange-300"></i> MySQL</span>
+                <span class="flex items-center gap-2"><i class="fas fa-leaf text-emerald-400"></i> MongoDB</span>
+                <span class="flex items-center gap-2"><i class="fab fa-docker text-sky-400"></i> Docker</span>
+                <span class="flex items-center gap-2"><i class="fab fa-linux text-gray-200"></i> Linux</span>
+                <span class="flex items-center gap-2"><i class="fab fa-git-alt text-orange-400"></i> Git</span>
+                <!-- duplicate -->
+                <span class="flex items-center gap-2" aria-hidden="true"><i class="fab fa-react text-cyan-400"></i> React</span>
+                <span class="flex items-center gap-2" aria-hidden="true"><i class="fas fa-n text-white"></i> Next.js</span>
+                <span class="flex items-center gap-2" aria-hidden="true"><i class="fab fa-js text-yellow-300"></i> TypeScript</span>
+                <span class="flex items-center gap-2" aria-hidden="true"><i class="fab fa-node-js text-green-400"></i> Node.js</span>
+                <span class="flex items-center gap-2" aria-hidden="true"><i class="fab fa-python text-blue-300"></i> Python</span>
+                <span class="flex items-center gap-2" aria-hidden="true"><i class="fas fa-moon text-indigo-300"></i> Lua</span>
+                <span class="flex items-center gap-2" aria-hidden="true"><i class="fas fa-gamepad text-pink-400"></i> FiveM</span>
+                <span class="flex items-center gap-2" aria-hidden="true"><i class="fas fa-database text-orange-300"></i> MySQL</span>
+                <span class="flex items-center gap-2" aria-hidden="true"><i class="fas fa-leaf text-emerald-400"></i> MongoDB</span>
+                <span class="flex items-center gap-2" aria-hidden="true"><i class="fab fa-docker text-sky-400"></i> Docker</span>
+                <span class="flex items-center gap-2" aria-hidden="true"><i class="fab fa-linux text-gray-200"></i> Linux</span>
+                <span class="flex items-center gap-2" aria-hidden="true"><i class="fab fa-git-alt text-orange-400"></i> Git</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= SERVER RP ================= -->
+    <section id="server" class="max-w-6xl mx-auto px-4 sm:px-6 py-20">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+            <div class="reveal">
+                <span class="eyebrow"><span class="bar"></span> Sedang Dikerjakan</span>
+                <h2 class="mt-4 text-3xl md:text-5xl font-bold tracking-tight">Server Roleplay<br class="hidden md:block"> yang saya <span class="grad-text">bangun</span>.</h2>
+            </div>
+            <p class="text-gray-400 max-w-sm text-sm leading-relaxed reveal" style="--d:.1s">
+                Dua komunitas FiveM yang sekarang jadi tempat saya paling banyak ngoding — dari core system, database, sampai urusan performa.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+            <!-- Cerita Kita RP -->
+            <article class="card server-card lift p-7 md:p-9 reveal">
+                <div class="glow -top-40 -right-32 bg-cyan-500"></div>
+                <div class="glow -bottom-52 -left-40 bg-violet-600"></div>
+
+                <div class="relative">
+                    <div class="flex items-start justify-between gap-4">
+                        <div class="server-logo">
+                            <img src="https://ceritakitarp.com/logo.png" alt="Logo Cerita Kita RP" loading="lazy"
+                                 onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'hommi-mark',style:'background:linear-gradient(140deg,#22d3ee,#8b5cf6)',textContent:'CK'}))">
+                        </div>
+                        <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[11px] font-semibold tracking-wide text-emerald-300 bg-emerald-400/10 border border-emerald-400/20">
+                            <span class="live-dot"></span> AKTIF
+                        </span>
+                    </div>
+
+                    <h3 class="mt-7 text-2xl md:text-3xl font-bold tracking-tight">Cerita Kita RP</h3>
+                    <p class="mt-1 text-sm font-medium text-cyan-300/90">Lead Developer · Fullstack &amp; Server Architect</p>
+
+                    <p class="mt-5 text-gray-400 text-sm leading-relaxed">
+                        Server roleplay FiveM yang dibangun dari nol dengan niat serius: cerita yang dalam, ekonomi yang masuk akal, dan server yang nggak nge-lag walau rame. Saya pegang core system-nya — scripting Lua, database, sampai mastiin performa tetap stabil pas ratusan player online bareng.
                     </p>
-                    <div class="flex flex-wrap gap-2 mb-8">
-                        <span class="px-3 py-1.5 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-xs font-medium">Lua Advanced</span>
-                        <span class="px-3 py-1.5 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-300 text-xs font-medium">FXServer</span>
-                        <span class="px-3 py-1.5 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-300 text-xs font-medium">MySQL</span>
-                        <span class="px-3 py-1.5 rounded-lg bg-pink-500/10 border border-pink-500/20 text-pink-300 text-xs font-medium">Server Optimization</span>
-                        <span class="px-3 py-1.5 rounded-lg bg-yellow-500/10 border border-yellow-500/20 text-yellow-300 text-xs font-medium">Systems Design</span>
+
+                    <div class="mt-6 space-y-2.5">
+                        <div class="feature-row"><i class="fas fa-circle text-cyan-400"></i> Economy engine, job framework, housing &amp; inventory kustom</div>
+                        <div class="feature-row"><i class="fas fa-circle text-cyan-400"></i> Arsitektur server tahan 100+ player online bareng</div>
+                        <div class="feature-row"><i class="fas fa-circle text-cyan-400"></i> Optimasi performa &amp; debugging biar hidup 24/7</div>
                     </div>
-                    <a href="https://ceritakitarp.com" target="_blank" class="inline-flex items-center px-5 py-2.5 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 hover:border-cyan-500/30 text-cyan-400 transition-all text-sm font-medium">
-                        Kunjungi Website <i class="fas fa-arrow-right ml-2 text-xs"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- About -->
-    <section id="tentang" class="max-w-6xl mx-auto px-6 py-16">
-        <div class="fade-up">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold text-gradient mb-4 font-display tracking-tight">Tentang Saya</h2>
-                <p class="text-gray-400 max-w-xl mx-auto text-sm md:text-base">Senang kalau ide yang tadinya cuma coretan bisa jadi sesuatu yang beneran dipakai orang.</p>
-            </div>
+                    <div class="mt-7 flex flex-wrap gap-2">
+                        <span class="chip">Lua</span>
+                        <span class="chip">FXServer</span>
+                        <span class="chip">MySQL</span>
+                        <span class="chip">Optimization</span>
+                        <span class="chip">Systems Design</span>
+                    </div>
 
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="glass rounded-2xl p-8 hover-card border-l-[3px] border-cyan-500">
-                    <div class="text-cyan-400 text-3xl mb-5"><i class="fas fa-graduation-cap"></i></div>
-                    <h3 class="text-xl font-bold mb-3 text-white font-display">Pendidikan</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">Kuliah di Teknik Informatika, paling tertarik sama software engineering, arsitektur sistem, dan hal-hal yang bikin sebuah antarmuka enak dipakai.</p>
-                </div>
-
-                <div class="glass rounded-2xl p-8 hover-card border-l-[3px] border-purple-500">
-                    <div class="text-purple-400 text-3xl mb-5"><i class="fas fa-laptop-code"></i></div>
-                    <h3 class="text-xl font-bold mb-3 text-white font-display">Fullstack Developer</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">Bikin aplikasi dari tampilan depan sampai backend-nya sendiri, tapi jujur paling betah kalau udah nyemplung ke pengembangan server game.</p>
-                </div>
-
-                <div class="glass rounded-2xl p-8 hover-card border-l-[3px] border-yellow-500">
-                    <div class="text-yellow-400 text-3xl mb-5"><i class="fas fa-lightbulb"></i></div>
-                    <h3 class="text-xl font-bold mb-3 text-white font-display">Problem Solver</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">Kode rapi dan gampang dirawat itu penting, tapi yang paling saya kejar adalah pengalaman pakainya kerasa enak buat orang di baliknya.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Bento -->
-    <section id="keahlian" class="max-w-6xl mx-auto px-6 py-16">
-        <div class="fade-up">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-5xl font-bold text-gradient mb-4 font-display tracking-tight">Tech Arsenal</h2>
-                <p class="text-gray-400">Tools dan bahasa yang paling sering saya pakai buat kerja sehari-hari.</p>
-            </div>
-
-            <div class="bento-grid">
-                <div class="bento-item md:col-span-2 glass border border-white/5">
-                    <h3 class="font-bold mb-4 text-cyan-400 font-display text-lg flex items-center gap-2"><i class="fas fa-window-maximize text-sm"></i> Frontend</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">React.js</span>
-                        <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">Next.js</span>
-                        <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">TypeScript</span>
-                        <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">Tailwind CSS</span>
-                        <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">Framer Motion</span>
+                    <div class="mt-8 pt-6 border-t border-white/[0.06] flex items-center justify-between gap-4">
+                        <span class="font-mono text-xs text-gray-500">2025 — sekarang</span>
+                        <a href="https://ceritakitarp.com" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-cyan-300 transition-colors">
+                            Kunjungi Website <i class="fas fa-arrow-up-right-from-square text-xs"></i>
+                        </a>
                     </div>
                 </div>
+            </article>
 
-                <div class="bento-item glass border border-white/5">
-                    <h3 class="font-bold mb-4 text-purple-400 font-display text-lg flex items-center gap-2"><i class="fas fa-server text-sm"></i> Backend</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">Node.js</span>
-                        <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">Express</span>
-                        <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">Python</span>
-                        <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">REST API</span>
-                    </div>
-                </div>
+            <!-- Hommi Roleplay -->
+            <article class="card server-card lift p-7 md:p-9 reveal" style="--d:.12s">
+                <div class="glow -top-40 -right-32 bg-amber-500"></div>
+                <div class="glow -bottom-52 -left-40 bg-rose-600"></div>
 
-                <div class="bento-item glass border border-white/5">
-                    <h3 class="font-bold mb-4 text-pink-400 font-display text-lg flex items-center gap-2"><i class="fas fa-gamepad text-sm"></i> Game Dev</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">Lua</span>
-                        <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">FiveM</span>
-                        <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">CFX Platform</span>
-                    </div>
-                </div>
-
-                <div class="bento-item md:col-span-2 glass border border-white/5">
-                    <h3 class="font-bold mb-4 text-green-400 font-display text-lg flex items-center gap-2"><i class="fas fa-database text-sm"></i> Database & DevOps</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">MongoDB</span>
-                        <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">MySQL</span>
-                        <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">Docker</span>
-                        <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">Git</span>
-                        <span class="px-3 py-1.5 rounded-lg bg-white/5 text-sm border border-white/5 text-gray-300">Linux</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Experience -->
-    <section class="max-w-6xl mx-auto px-6 py-16">
-        <div class="fade-up">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-5xl font-bold text-gradient-gold mb-4 font-display tracking-tight">Experience</h2>
-                <p class="text-gray-400">Beberapa langkah yang udah dilewati di dunia development.</p>
-            </div>
-
-            <div class="space-y-8">
-                <div class="glass rounded-2xl p-8 md:p-10 hover-card relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity">
-                        <i class="fas fa-gamepad text-9xl text-cyan-400"></i>
-                    </div>
-                    <div class="relative z-10">
-                        <div class="flex items-center gap-3 mb-3">
-                            <span class="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-bold border border-cyan-500/20 tracking-wider">2025 — SEKARANG</span>
+                <div class="relative">
+                    <div class="flex items-start justify-between gap-4">
+                        <div class="server-logo">
+                            <img src="hommi-logo.png" alt="Logo Hommi Roleplay" loading="lazy"
+                                 onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'hommi-mark',textContent:'H'}))">
                         </div>
-                        <h3 class="text-2xl font-bold text-white mb-1 font-display">Lead Developer — Cerita Kita RP</h3>
-                        <p class="text-cyan-400/80 mb-6 text-sm font-medium">Fullstack Developer & Server Architect</p>
-                        <ul class="space-y-3 text-gray-400 text-sm">
-                            <li class="flex items-start"><i class="fas fa-chevron-right text-cyan-500 mt-1 mr-3 text-xs"></i> Bangun arsitektur server roleplay yang tahan sampai 100+ player online bareng, pakai Lua & MySQL.</li>
-                            <li class="flex items-start"><i class="fas fa-chevron-right text-cyan-500 mt-1 mr-3 text-xs"></i> Rancang sendiri core system-nya: economy engine, job framework, housing, sampai inventory kustom.</li>
-                            <li class="flex items-start"><i class="fas fa-chevron-right text-cyan-500 mt-1 mr-3 text-xs"></i> Turun tangan langsung buat optimasi performa dan debugging biar server tetap hidup 24/7.</li>
+                        <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[11px] font-semibold tracking-wide text-emerald-300 bg-emerald-400/10 border border-emerald-400/20">
+                            <span class="live-dot"></span> AKTIF
+                        </span>
+                    </div>
+
+                    <h3 class="mt-7 text-2xl md:text-3xl font-bold tracking-tight">Hommi Roleplay</h3>
+                    <p class="mt-1 text-sm font-medium text-amber-300/90">FiveM Developer · Script &amp; Gameplay Systems</p>
+
+                    <p class="mt-5 text-gray-400 text-sm leading-relaxed">
+                        Komunitas roleplay FiveM yang hangat dan kerasa kayak rumah sendiri. Di sini saya ikut ngembangin script dan fitur gameplay, ngerapihin integrasi database, dan jagain biar pengalaman main tetap mulus buat semua warga kotanya.
+                    </p>
+
+                    <div class="mt-6 space-y-2.5">
+                        <div class="feature-row"><i class="fas fa-circle text-amber-400"></i> Script custom &amp; fitur roleplay yang nyambung sama cerita</div>
+                        <div class="feature-row"><i class="fas fa-circle text-amber-400"></i> Integrasi resource &amp; database MySQL yang rapi</div>
+                        <div class="feature-row"><i class="fas fa-circle text-amber-400"></i> Tuning performa biar gameplay tetap stabil</div>
+                    </div>
+
+                    <div class="mt-7 flex flex-wrap gap-2">
+                        <span class="chip">Lua</span>
+                        <span class="chip">FiveM</span>
+                        <span class="chip">MySQL</span>
+                        <span class="chip">NUI / UI</span>
+                        <span class="chip">Gameplay Systems</span>
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-white/[0.06] flex items-center justify-between gap-4">
+                        <span class="font-mono text-xs text-gray-500">sekarang</span>
+                        <a href="#kontak" class="inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-amber-300 transition-colors">
+                            Tanya soal Hommi <i class="fas fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- ================= TENTANG ================= -->
+    <section id="tentang" class="max-w-6xl mx-auto px-4 sm:px-6 py-20">
+        <div class="reveal mb-12">
+            <span class="eyebrow"><span class="bar"></span> Tentang Saya</span>
+            <h2 class="mt-4 text-3xl md:text-5xl font-bold tracking-tight max-w-3xl">Senang kalau ide yang tadinya cuma coretan bisa jadi sesuatu yang <span class="grad-text">beneran dipakai</span>.</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-6 gap-5">
+            <div class="card lift p-7 md:col-span-3 reveal">
+                <div class="w-11 h-11 rounded-xl grid place-items-center bg-cyan-400/10 text-cyan-300 border border-cyan-400/20"><i class="fas fa-graduation-cap"></i></div>
+                <h3 class="mt-5 text-lg font-bold">Pendidikan</h3>
+                <p class="mt-2 text-sm text-gray-400 leading-relaxed">Kuliah di Teknik Informatika, paling tertarik sama software engineering, arsitektur sistem, dan hal-hal yang bikin sebuah antarmuka enak dipakai.</p>
+            </div>
+            <div class="card lift p-7 md:col-span-3 reveal" style="--d:.08s">
+                <div class="w-11 h-11 rounded-xl grid place-items-center bg-violet-400/10 text-violet-300 border border-violet-400/20"><i class="fas fa-laptop-code"></i></div>
+                <h3 class="mt-5 text-lg font-bold">Fullstack Developer</h3>
+                <p class="mt-2 text-sm text-gray-400 leading-relaxed">Bikin aplikasi dari tampilan depan sampai backend-nya sendiri, tapi jujur paling betah kalau udah nyemplung ke pengembangan server game.</p>
+            </div>
+            <div class="card lift p-7 md:col-span-2 reveal" style="--d:.12s">
+                <div class="w-11 h-11 rounded-xl grid place-items-center bg-amber-400/10 text-amber-300 border border-amber-400/20"><i class="fas fa-lightbulb"></i></div>
+                <h3 class="mt-5 text-lg font-bold">Problem Solver</h3>
+                <p class="mt-2 text-sm text-gray-400 leading-relaxed">Kode rapi itu penting, tapi yang paling dikejar adalah pengalaman pakainya kerasa enak.</p>
+            </div>
+            <div class="card p-7 md:col-span-4 reveal" style="--d:.16s">
+                <i class="fas fa-quote-left text-3xl text-violet-400/40"></i>
+                <p class="mt-4 text-lg md:text-xl text-gray-200 leading-relaxed font-medium">
+                    Masih belajar, masih ngoprek, masih betah begadang buat debug. Dibangun pelan-pelan, satu baris kode di satu waktu.
+                </p>
+                <div class="mt-6 flex items-center gap-3">
+                    <span class="w-9 h-9 rounded-full grid place-items-center bg-white text-[#0b0b12] font-extrabold text-xs">B</span>
+                    <div>
+                        <div class="text-sm font-semibold">Muhammad Nor Abdillah</div>
+                        <div class="text-xs text-gray-500">a.k.a Botline</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= KEAHLIAN ================= -->
+    <section id="keahlian" class="max-w-6xl mx-auto px-4 sm:px-6 py-20">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+            <div class="reveal">
+                <span class="eyebrow"><span class="bar"></span> Tech Arsenal</span>
+                <h2 class="mt-4 text-3xl md:text-5xl font-bold tracking-tight">Alat kerja <span class="grad-text">sehari-hari</span>.</h2>
+            </div>
+            <p class="text-gray-400 max-w-sm text-sm leading-relaxed reveal" style="--d:.1s">Tools dan bahasa yang paling sering saya pakai, dari layar depan sampai ke server.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div class="card lift p-6 sm:col-span-2 reveal">
+                <div class="flex items-center justify-between">
+                    <h3 class="font-bold flex items-center gap-3"><span class="w-9 h-9 rounded-lg grid place-items-center bg-cyan-400/10 text-cyan-300 text-sm"><i class="fas fa-window-maximize"></i></span> Frontend</h3>
+                    <span class="font-mono text-[11px] text-gray-600">01</span>
+                </div>
+                <div class="mt-5 flex flex-wrap gap-2">
+                    <span class="chip">React.js</span><span class="chip">Next.js</span><span class="chip">TypeScript</span><span class="chip">Tailwind CSS</span><span class="chip">Framer Motion</span>
+                </div>
+            </div>
+            <div class="card lift p-6 sm:col-span-2 reveal" style="--d:.06s">
+                <div class="flex items-center justify-between">
+                    <h3 class="font-bold flex items-center gap-3"><span class="w-9 h-9 rounded-lg grid place-items-center bg-violet-400/10 text-violet-300 text-sm"><i class="fas fa-server"></i></span> Backend</h3>
+                    <span class="font-mono text-[11px] text-gray-600">02</span>
+                </div>
+                <div class="mt-5 flex flex-wrap gap-2">
+                    <span class="chip">Node.js</span><span class="chip">Express</span><span class="chip">Python</span><span class="chip">REST API</span>
+                </div>
+            </div>
+            <div class="card lift p-6 sm:col-span-2 lg:col-span-2 reveal" style="--d:.1s">
+                <div class="flex items-center justify-between">
+                    <h3 class="font-bold flex items-center gap-3"><span class="w-9 h-9 rounded-lg grid place-items-center bg-pink-400/10 text-pink-300 text-sm"><i class="fas fa-gamepad"></i></span> Game Dev</h3>
+                    <span class="font-mono text-[11px] text-gray-600">03</span>
+                </div>
+                <div class="mt-5 flex flex-wrap gap-2">
+                    <span class="chip">Lua</span><span class="chip">FiveM</span><span class="chip">CFX Platform</span><span class="chip">NUI</span>
+                </div>
+            </div>
+            <div class="card lift p-6 sm:col-span-2 lg:col-span-2 reveal" style="--d:.14s">
+                <div class="flex items-center justify-between">
+                    <h3 class="font-bold flex items-center gap-3"><span class="w-9 h-9 rounded-lg grid place-items-center bg-emerald-400/10 text-emerald-300 text-sm"><i class="fas fa-database"></i></span> Database &amp; DevOps</h3>
+                    <span class="font-mono text-[11px] text-gray-600">04</span>
+                </div>
+                <div class="mt-5 flex flex-wrap gap-2">
+                    <span class="chip">MongoDB</span><span class="chip">MySQL</span><span class="chip">Docker</span><span class="chip">Git</span><span class="chip">Linux</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= PENGALAMAN ================= -->
+    <section id="pengalaman" class="max-w-6xl mx-auto px-4 sm:px-6 py-20">
+        <div class="grid grid-cols-1 lg:grid-cols-[1fr_1.6fr] gap-12">
+            <div class="reveal lg:sticky lg:top-28 self-start">
+                <span class="eyebrow"><span class="bar"></span> Pengalaman</span>
+                <h2 class="mt-4 text-3xl md:text-5xl font-bold tracking-tight">Langkah yang udah <span class="grad-warm">dilewati</span>.</h2>
+                <p class="mt-5 text-gray-400 text-sm leading-relaxed max-w-sm">Beberapa tempat yang ngebentuk cara saya ngoding — kebanyakan di dunia roleplay FiveM.</p>
+            </div>
+
+            <div class="timeline space-y-6">
+                <div class="relative pl-12 reveal">
+                    <span class="tl-dot text-cyan-300"><i class="fas fa-crown"></i></span>
+                    <div class="card lift p-6 md:p-7">
+                        <div class="flex flex-wrap items-center justify-between gap-3">
+                            <span class="font-mono text-[11px] tracking-wider px-2.5 py-1 rounded-md bg-cyan-400/10 text-cyan-300 border border-cyan-400/20">2025 — SEKARANG</span>
+                            <span class="text-xs text-gray-500">Cerita Kita RP</span>
+                        </div>
+                        <h3 class="mt-4 text-xl font-bold">Lead Developer</h3>
+                        <p class="text-sm text-gray-500">Fullstack Developer &amp; Server Architect</p>
+                        <ul class="mt-4 space-y-2.5 text-sm text-gray-400">
+                            <li class="feature-row"><i class="fas fa-chevron-right text-cyan-400"></i> Bangun arsitektur server roleplay yang tahan sampai 100+ player online bareng, pakai Lua &amp; MySQL.</li>
+                            <li class="feature-row"><i class="fas fa-chevron-right text-cyan-400"></i> Rancang core system: economy engine, job framework, housing, sampai inventory kustom.</li>
+                            <li class="feature-row"><i class="fas fa-chevron-right text-cyan-400"></i> Turun tangan langsung buat optimasi performa dan debugging biar server tetap hidup 24/7.</li>
                         </ul>
                     </div>
                 </div>
 
-                <div class="glass rounded-2xl p-8 md:p-10 hover-card relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity">
-                        <i class="fas fa-code text-9xl text-purple-400"></i>
-                    </div>
-                    <div class="relative z-10">
-                        <div class="flex items-center gap-3 mb-3">
-                            <span class="px-3 py-1 rounded-full bg-purple-500/10 text-purple-400 text-xs font-bold border border-purple-500/20 tracking-wider">SEBELUMNYA</span>
+                <div class="relative pl-12 reveal" style="--d:.08s">
+                    <span class="tl-dot text-amber-300"><i class="fas fa-house"></i></span>
+                    <div class="card lift p-6 md:p-7">
+                        <div class="flex flex-wrap items-center justify-between gap-3">
+                            <span class="font-mono text-[11px] tracking-wider px-2.5 py-1 rounded-md bg-amber-400/10 text-amber-300 border border-amber-400/20">SEKARANG</span>
+                            <span class="text-xs text-gray-500">Hommi Roleplay</span>
                         </div>
-                        <h3 class="text-2xl font-bold text-white mb-1 font-display">FiveM Developer — +62 Community</h3>
-                        <p class="text-purple-400/80 mb-6 text-sm font-medium">Script Developer & System Integrator</p>
-                        <ul class="space-y-3 text-gray-400 text-sm">
-                            <li class="flex items-start"><i class="fas fa-chevron-right text-purple-500 mt-1 mr-3 text-xs"></i> Bikin script custom dan fitur-fitur roleplay yang belum ada di server lain buat komunitasnya.</li>
-                            <li class="flex items-start"><i class="fas fa-chevron-right text-purple-500 mt-1 mr-3 text-xs"></i> Ngatur integrasi database MySQL dan resource biar gameplay tetap stabil.</li>
+                        <h3 class="mt-4 text-xl font-bold">FiveM Developer</h3>
+                        <p class="text-sm text-gray-500">Script Developer &amp; Gameplay Systems</p>
+                        <ul class="mt-4 space-y-2.5 text-sm text-gray-400">
+                            <li class="feature-row"><i class="fas fa-chevron-right text-amber-400"></i> Ngembangin script custom dan fitur roleplay buat warga Hommi.</li>
+                            <li class="feature-row"><i class="fas fa-chevron-right text-amber-400"></i> Ngerapihin integrasi resource &amp; database biar gameplay tetap stabil.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="relative pl-12 reveal" style="--d:.16s">
+                    <span class="tl-dot text-violet-300"><i class="fas fa-code"></i></span>
+                    <div class="card lift p-6 md:p-7">
+                        <div class="flex flex-wrap items-center justify-between gap-3">
+                            <span class="font-mono text-[11px] tracking-wider px-2.5 py-1 rounded-md bg-violet-400/10 text-violet-300 border border-violet-400/20">SEBELUMNYA</span>
+                            <span class="text-xs text-gray-500">+62 Community</span>
+                        </div>
+                        <h3 class="mt-4 text-xl font-bold">FiveM Developer</h3>
+                        <p class="text-sm text-gray-500">Script Developer &amp; System Integrator</p>
+                        <ul class="mt-4 space-y-2.5 text-sm text-gray-400">
+                            <li class="feature-row"><i class="fas fa-chevron-right text-violet-400"></i> Bikin script custom dan fitur roleplay yang belum ada di server lain buat komunitasnya.</li>
+                            <li class="feature-row"><i class="fas fa-chevron-right text-violet-400"></i> Ngatur integrasi database MySQL dan resource biar gameplay tetap stabil.</li>
                         </ul>
                     </div>
                 </div>
@@ -503,189 +912,350 @@
         </div>
     </section>
 
-    <!-- Projects -->
-    <section id="proyek" class="max-w-6xl mx-auto px-6 py-16">
-        <div class="fade-up">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-5xl font-bold text-gradient mb-4 font-display tracking-tight">Featured Projects</h2>
-                <p class="text-gray-400">Beberapa hasil kerja yang paling ingin saya tunjukkan.</p>
+    <!-- ================= PROYEK ================= -->
+    <section id="proyek" class="max-w-6xl mx-auto px-4 sm:px-6 py-20">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+            <div class="reveal">
+                <span class="eyebrow"><span class="bar"></span> Featured Projects</span>
+                <h2 class="mt-4 text-3xl md:text-5xl font-bold tracking-tight">Hasil kerja <span class="grad-text">pilihan</span>.</h2>
             </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="glass rounded-2xl overflow-hidden hover-card group">
-                    <div class="h-52 bg-gradient-to-br from-cyan-500/10 to-blue-600/10 relative overflow-hidden border-b border-white/5">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <i class="fas fa-project-diagram text-7xl text-cyan-400/20 group-hover:scale-110 transition-transform duration-700"></i>
-                        </div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#0f172a] to-transparent"></div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-lg font-bold mb-2 text-cyan-400 font-display">TaskFlow Pro</h3>
-                        <p class="text-gray-400 text-sm mb-5 line-clamp-3">Aplikasi produktivitas berbasis React yang bisa dipakai real-time rame-rame, lengkap dengan kanban drag-drop, sistem login, dan workspace kolaboratif.</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-2.5 py-1 rounded-md bg-cyan-500/10 text-xs text-cyan-300 border border-cyan-500/20">React</span>
-                            <span class="px-2.5 py-1 rounded-md bg-cyan-500/10 text-xs text-cyan-300 border border-cyan-500/20">Firebase</span>
-                            <span class="px-2.5 py-1 rounded-md bg-cyan-500/10 text-xs text-cyan-300 border border-cyan-500/20">Tailwind</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="glass rounded-2xl overflow-hidden hover-card group border-cyan-500/20">
-                    <div class="h-52 bg-gradient-to-br from-purple-500/10 to-pink-600/10 relative overflow-hidden border-b border-white/5">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <i class="fas fa-server text-7xl text-purple-400/20 group-hover:scale-110 transition-transform duration-700"></i>
-                        </div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#0f172a] to-transparent"></div>
-                    </div>
-
-                </div>
-
-                <div class="glass rounded-2xl overflow-hidden hover-card group">
-                    <div class="h-52 bg-gradient-to-br from-yellow-500/10 to-orange-600/10 relative overflow-hidden border-b border-white/5">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <i class="fas fa-shopping-bag text-7xl text-yellow-400/20 group-hover:scale-110 transition-transform duration-700"></i>
-                        </div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#0f172a] to-transparent"></div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-lg font-bold mb-2 text-yellow-400 font-display">NexCommerce API</h3>
-                        <p class="text-gray-400 text-sm mb-5 line-clamp-3">Backend e-commerce dengan RESTful API, pembayaran lewat Stripe, dan stok barang yang ke-update real-time.</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-2.5 py-1 rounded-md bg-yellow-500/10 text-xs text-yellow-300 border border-yellow-500/20">Node.js</span>
-                            <span class="px-2.5 py-1 rounded-md bg-yellow-500/10 text-xs text-yellow-300 border border-yellow-500/20">MongoDB</span>
-                            <span class="px-2.5 py-1 rounded-md bg-yellow-500/10 text-xs text-yellow-300 border border-yellow-500/20">Stripe</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <p class="text-gray-400 max-w-sm text-sm leading-relaxed reveal" style="--d:.1s">Beberapa hasil kerja di luar server RP yang paling ingin saya tunjukkan.</p>
         </div>
-    </section>
 
-    <!-- Contact -->
-    <section id="kontak" class="max-w-6xl mx-auto px-6 py-16">
-        <div class="fade-up">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-5xl font-bold text-gradient mb-4 font-display tracking-tight">Mari Berkolaborasi</h2>
-                <p class="text-gray-400">Ada ide atau proyek yang mau digarap bareng? Tinggal kontak aja.</p>
-            </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            <article class="card lift group reveal">
+                <div class="relative h-48 overflow-hidden border-b border-white/[0.06] bg-gradient-to-br from-cyan-500/15 via-transparent to-blue-600/15">
+                    <div class="absolute inset-0 grid place-items-center">
+                        <i class="fas fa-diagram-project text-6xl text-cyan-300/30 transition-transform duration-700 group-hover:scale-110 group-hover:rotate-[-4deg]"></i>
+                    </div>
+                    <span class="absolute top-4 left-4 font-mono text-[11px] text-gray-400">01 / WEB APP</span>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-lg font-bold">TaskFlow Pro</h3>
+                    <p class="mt-2 text-sm text-gray-400 leading-relaxed">Aplikasi produktivitas berbasis React yang bisa dipakai real-time rame-rame, lengkap dengan kanban drag-drop, sistem login, dan workspace kolaboratif.</p>
+                    <div class="mt-5 flex flex-wrap gap-2"><span class="chip">React</span><span class="chip">Firebase</span><span class="chip">Tailwind</span></div>
+                </div>
+            </article>
 
-            <div class="grid md:grid-cols-2 gap-12 items-center">
+            <article class="card lift group reveal" style="--d:.08s">
+                <div class="relative h-48 overflow-hidden border-b border-white/[0.06] bg-gradient-to-br from-amber-500/15 via-transparent to-orange-600/15">
+                    <div class="absolute inset-0 grid place-items-center">
+                        <i class="fas fa-bag-shopping text-6xl text-amber-300/30 transition-transform duration-700 group-hover:scale-110 group-hover:rotate-[4deg]"></i>
+                    </div>
+                    <span class="absolute top-4 left-4 font-mono text-[11px] text-gray-400">02 / BACKEND</span>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-lg font-bold">NexCommerce API</h3>
+                    <p class="mt-2 text-sm text-gray-400 leading-relaxed">Backend e-commerce dengan RESTful API, pembayaran lewat Stripe, dan stok barang yang ke-update real-time.</p>
+                    <div class="mt-5 flex flex-wrap gap-2"><span class="chip">Node.js</span><span class="chip">MongoDB</span><span class="chip">Stripe</span></div>
+                </div>
+            </article>
+
+            <a href="#kontak" class="card lift group reveal md:col-span-2 lg:col-span-1 flex flex-col justify-between p-7 min-h-[280px] border-dashed" style="--d:.16s">
                 <div>
-                    <h3 class="text-2xl md:text-3xl font-bold mb-5 text-white font-display leading-tight">Yuk, bangun sesuatu yang layak dibanggakan.</h3>
-                    <p class="text-gray-400 mb-10 leading-relaxed">Terbuka buat ngobrolin proyek baru, kolaborasi, atau kerja freelance. Langsung aja email saya atau isi form di sebelah.</p>
+                    <span class="font-mono text-[11px] text-gray-500">03 / NEXT</span>
+                    <h3 class="mt-4 text-2xl font-bold leading-snug">Proyek berikutnya,<br>mungkin <span class="grad-text">punyamu</span>?</h3>
+                    <p class="mt-3 text-sm text-gray-400 leading-relaxed">Web app, sistem backend, atau script FiveM — yuk ngobrol dulu.</p>
+                </div>
+                <span class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-white">
+                    Mulai diskusi <i class="fas fa-arrow-right text-xs transition-transform group-hover:translate-x-1"></i>
+                </span>
+            </a>
+        </div>
+    </section>
 
-                    <div class="space-y-6">
-                        <div class="flex items-center group">
-                            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center mr-5 group-hover:scale-110 transition-transform">
-                                <i class="fas fa-envelope text-cyan-400"></i>
-                            </div>
-                            <div>
-                                <div class="text-[10px] text-gray-500 uppercase tracking-widest font-bold mb-0.5">Email</div>
-                                <div class="text-white text-sm">norabdillah95@gmail.com</div>
-                            </div>
-                        </div>
+    <!-- ================= KONTAK ================= -->
+    <section id="kontak" class="max-w-6xl mx-auto px-4 sm:px-6 py-20">
+        <div class="card p-6 sm:p-10 md:p-14 reveal">
+            <div class="glow absolute -top-40 -left-32 w-[420px] h-[420px] rounded-full bg-violet-600 opacity-20 blur-[100px] pointer-events-none"></div>
+            <div class="glow absolute -bottom-40 -right-32 w-[420px] h-[420px] rounded-full bg-cyan-500 opacity-15 blur-[100px] pointer-events-none"></div>
 
-                        <div class="flex items-center group">
-                            <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mr-5 group-hover:scale-110 transition-transform">
-                                <i class="fab fa-github text-purple-400"></i>
-                            </div>
-                            <div>
-                                <div class="text-[10px] text-gray-500 uppercase tracking-widest font-bold mb-0.5">GitHub</div>
-                                <div class="text-white text-sm">github.com/aderfa</div>
-                            </div>
-                        </div>
+            <div class="relative grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <span class="eyebrow"><span class="bar"></span> Mari Berkolaborasi</span>
+                    <h2 class="mt-4 text-3xl md:text-5xl font-bold tracking-tight leading-tight">Yuk, bangun sesuatu yang <span class="grad-text">layak dibanggakan</span>.</h2>
+                    <p class="mt-5 text-gray-400 leading-relaxed">Terbuka buat ngobrolin proyek baru, kolaborasi, atau kerja freelance. Langsung aja email saya atau isi form di sebelah.</p>
 
-                        <div class="flex items-center group">
-                            <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mr-5 group-hover:scale-110 transition-transform">
-                                <i class="fab fa-linkedin text-blue-400"></i>
-                            </div>
-                            <div>
-                                <div class="text-[10px] text-gray-500 uppercase tracking-widest font-bold mb-0.5">LinkedIn</div>
-                                <div class="text-white text-sm">Muhammad Nor Abdillah</div>
-                            </div>
+                    <div class="mt-10 space-y-3">
+                        <button type="button" id="copyEmail" class="w-full flex items-center gap-4 p-4 rounded-2xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/15 transition-all text-left group">
+                            <span class="w-11 h-11 rounded-xl grid place-items-center bg-cyan-400/10 text-cyan-300 border border-cyan-400/20"><i class="fas fa-envelope"></i></span>
+                            <span class="flex-1 min-w-0">
+                                <span class="block label !mb-0.5">Email</span>
+                                <span class="block text-sm text-white truncate">norabdillah95@gmail.com</span>
+                            </span>
+                            <i class="far fa-copy text-gray-500 group-hover:text-white transition-colors"></i>
+                        </button>
+                        <a href="https://github.com/aderfa" target="_blank" rel="noopener" class="flex items-center gap-4 p-4 rounded-2xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/15 transition-all group">
+                            <span class="w-11 h-11 rounded-xl grid place-items-center bg-violet-400/10 text-violet-300 border border-violet-400/20"><i class="fab fa-github"></i></span>
+                            <span class="flex-1 min-w-0">
+                                <span class="block label !mb-0.5">GitHub</span>
+                                <span class="block text-sm text-white truncate">github.com/aderfa</span>
+                            </span>
+                            <i class="fas fa-arrow-up-right-from-square text-xs text-gray-500 group-hover:text-white transition-colors"></i>
+                        </a>
+                        <div class="flex items-center gap-4 p-4 rounded-2xl border border-white/[0.08] bg-white/[0.03]">
+                            <span class="w-11 h-11 rounded-xl grid place-items-center bg-sky-400/10 text-sky-300 border border-sky-400/20"><i class="fab fa-linkedin-in"></i></span>
+                            <span class="flex-1 min-w-0">
+                                <span class="block label !mb-0.5">LinkedIn</span>
+                                <span class="block text-sm text-white truncate">Muhammad Nor Abdillah</span>
+                            </span>
                         </div>
                     </div>
                 </div>
 
-                <div class="glass rounded-2xl p-8 md:p-10">
-                    <form id="contactForm">
-                        <div class="mb-5">
-                            <label class="block text-[10px] text-gray-500 uppercase tracking-widest font-bold mb-2">Nama</label>
-                            <input type="text" id="nama" class="w-full px-4 py-3 bg-black/20 border border-white/10 rounded-xl focus:outline-none focus:border-cyan-500/40 focus:bg-black/30 transition-all text-white text-sm" required>
+                <form id="contactForm" class="rounded-3xl border border-white/[0.08] bg-black/20 p-5 sm:p-8">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label for="nama" class="label">Nama</label>
+                            <input type="text" id="nama" class="field" placeholder="Nama kamu" required>
                         </div>
-                        <div class="mb-5">
-                            <label class="block text-[10px] text-gray-500 uppercase tracking-widest font-bold mb-2">Email</label>
-                            <input type="email" id="email" class="w-full px-4 py-3 bg-black/20 border border-white/10 rounded-xl focus:outline-none focus:border-cyan-500/40 focus:bg-black/30 transition-all text-white text-sm" required>
+                        <div>
+                            <label for="email" class="label">Email</label>
+                            <input type="email" id="email" class="field" placeholder="kamu@email.com" required>
                         </div>
-                        <div class="mb-6">
-                            <label class="block text-[10px] text-gray-500 uppercase tracking-widest font-bold mb-2">Pesan</label>
-                            <textarea id="pesan" class="w-full px-4 py-3 bg-black/20 border border-white/10 rounded-xl focus:outline-none focus:border-cyan-500/40 focus:bg-black/30 transition-all text-white text-sm h-32 resize-none" required></textarea>
+                    </div>
+                    <div class="mt-4">
+                        <label class="label">Topik</label>
+                        <div class="flex flex-wrap gap-2" id="topics">
+                            <button type="button" class="chip topic" data-v="Web App">Web App</button>
+                            <button type="button" class="chip topic" data-v="Script FiveM">Script FiveM</button>
+                            <button type="button" class="chip topic" data-v="Cerita Kita RP">Cerita Kita RP</button>
+                            <button type="button" class="chip topic" data-v="Hommi Roleplay">Hommi Roleplay</button>
+                            <button type="button" class="chip topic" data-v="Lainnya">Lainnya</button>
                         </div>
-                        <button type="submit" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white py-3 rounded-xl font-semibold hover:shadow-lg hover:shadow-cyan-500/20 transition-all transform hover:-translate-y-0.5 text-sm">
-                            Kirim Pesan
-                        </button>
-                    </form>
-                </div>
+                    </div>
+                    <div class="mt-4">
+                        <label for="pesan" class="label">Pesan</label>
+                        <textarea id="pesan" class="field h-36 resize-none" placeholder="Ceritain idemu..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-full mt-6">
+                        Kirim Pesan <i class="far fa-paper-plane text-xs"></i>
+                    </button>
+                    <p class="mt-3 text-center text-[11px] text-gray-600">Form ini akan membuka aplikasi email kamu.</p>
+                </form>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="border-t border-white/5 mt-20">
-        <div class="max-w-6xl mx-auto px-6 py-12">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-                <div class="text-center md:text-left">
-                    <div class="font-bold text-xl tracking-tight text-white font-display mb-1">
-                        <span class="text-cyan-400">&lt;</span>Botline<span class="text-cyan-400">/&gt;</span>
-                    </div>
-                    <p class="text-gray-600 text-xs">Dibangun pelan-pelan, satu baris kode di satu waktu.</p>
-                </div>
+    </main>
 
-                <div class="flex space-x-3">
-                    <a href="https://github.com/aderfa" target="_blank" class="w-10 h-10 rounded-full glass flex items-center justify-center text-gray-400 hover:text-white hover:border-cyan-500/30 transition-all">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="#" class="w-10 h-10 rounded-full glass flex items-center justify-center text-gray-400 hover:text-white hover:border-blue-500/30 transition-all">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="mailto:norabdillah95@gmail.com" class="w-10 h-10 rounded-full glass flex items-center justify-center text-gray-400 hover:text-white hover:border-pink-500/30 transition-all">
-                        <i class="fas fa-envelope"></i>
-                    </a>
+    <!-- ================= FOOTER ================= -->
+    <footer class="border-t border-white/[0.06] mt-10">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <span class="w-9 h-9 rounded-xl grid place-items-center bg-white text-[#0b0b12] font-extrabold text-sm">B</span>
+                <div>
+                    <div class="font-bold tracking-tight">Botline<span class="text-violet-400">.</span></div>
+                    <p class="text-xs text-gray-600">© <span id="year"></span> Muhammad Nor Abdillah</p>
                 </div>
             </div>
-            <div class="mt-10 pt-8 border-t border-white/5 text-center text-gray-700 text-xs">
-                 <span id="year"></span> Muhammad Nor Abdillah. All rights reserved.
+
+            <div class="flex items-center gap-2">
+                <a href="https://github.com/aderfa" target="_blank" rel="noopener" aria-label="GitHub" class="w-10 h-10 rounded-xl grid place-items-center border border-white/[0.08] bg-white/[0.03] text-gray-400 hover:text-white hover:border-white/20 transition-all"><i class="fab fa-github"></i></a>
+                <a href="https://ceritakitarp.com" target="_blank" rel="noopener" aria-label="Cerita Kita RP" class="w-10 h-10 rounded-xl grid place-items-center border border-white/[0.08] bg-white/[0.03] text-gray-400 hover:text-white hover:border-white/20 transition-all"><i class="fas fa-gamepad"></i></a>
+                <a href="mailto:norabdillah95@gmail.com" aria-label="Email" class="w-10 h-10 rounded-xl grid place-items-center border border-white/[0.08] bg-white/[0.03] text-gray-400 hover:text-white hover:border-white/20 transition-all"><i class="fas fa-envelope"></i></a>
+                <a href="#home" aria-label="Kembali ke atas" class="w-10 h-10 rounded-xl grid place-items-center bg-white text-[#0b0b12] hover:-translate-y-0.5 transition-transform"><i class="fas fa-arrow-up text-sm"></i></a>
             </div>
         </div>
     </footer>
 
+    <div id="toast" class="hide fixed bottom-6 left-1/2 -translate-x-1/2 z-[70] px-4 py-2.5 rounded-xl bg-white text-[#0b0b12] text-sm font-semibold shadow-2xl flex items-center gap-2">
+        <i class="fas fa-check-circle text-emerald-500"></i> <span id="toastText">Disalin!</span>
+    </div>
+
     <script>
-        document.getElementById("year").textContent = new Date().getFullYear();
+        (function () {
+            const $ = (s, c = document) => c.querySelector(s);
+            const $$ = (s, c = document) => Array.from(c.querySelectorAll(s));
+            const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        document.getElementById("contactForm").addEventListener("submit", function(e) {
-            e.preventDefault();
-            const nama = document.getElementById("nama").value;
-            const email = document.getElementById("email").value;
-            const pesan = document.getElementById("pesan").value;
-            const subject = encodeURIComponent("Pesan dari " + nama);
-            const body = encodeURIComponent("Nama: " + nama + "\nEmail: " + email + "\n\nPesan:\n" + pesan);
-            window.location.href = `mailto:norabdillah95@gmail.com?subject=${subject}&body=${body}`;
-        });
+            $('#year').textContent = new Date().getFullYear();
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+            /* Nav scroll + progress */
+            const nav = $('#nav');
+            const bar = $('#progress');
+            const onScroll = () => {
+                const y = window.scrollY;
+                nav.classList.toggle('scrolled', y > 10);
+                const h = document.documentElement.scrollHeight - window.innerHeight;
+                bar.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
+            };
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
+
+            /* Mobile menu */
+            const menuBtn = $('#menuBtn');
+            const menu = $('#mobileMenu');
+            const setMenu = (open) => {
+                menu.classList.toggle('hidden-menu', !open);
+                menuBtn.setAttribute('aria-expanded', open);
+                const ic = menuBtn.querySelector('i');
+                ic.classList.toggle('fa-bars', !open);
+                ic.classList.toggle('fa-xmark', open);
+            };
+            menuBtn.addEventListener('click', () => setMenu(menu.classList.contains('hidden-menu')));
+            $$('.m-link').forEach(a => a.addEventListener('click', () => setMenu(false)));
+            document.addEventListener('click', (e) => {
+                if (!menu.contains(e.target) && !menuBtn.contains(e.target)) setMenu(false);
+            });
+
+            /* Active nav link */
+            const links = $$('.nav-link');
+            const sections = links.map(l => $(l.getAttribute('href'))).filter(Boolean);
+            const spy = new IntersectionObserver((entries) => {
+                entries.forEach(en => {
+                    if (en.isIntersecting) {
+                        links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + en.target.id));
+                    }
+                });
+            }, { rootMargin: '-45% 0px -50% 0px' });
+            sections.forEach(s => spy.observe(s));
+
+            /* Reveal */
+            const rev = new IntersectionObserver((entries) => {
+                entries.forEach(en => {
+                    if (!en.isIntersecting) return;
+                    const el = en.target;
+                    el.classList.add('in');
+                    rev.unobserve(el);
+                    const d = parseFloat(getComputedStyle(el).getPropertyValue('--d')) || 0;
+                    setTimeout(() => el.classList.remove('reveal', 'in'), (d + 1) * 1000);
+                });
+            }, { threshold: 0.12 });
+            $$('.reveal').forEach(el => rev.observe(el));
+
+            /* Card spotlight */
+            $$('.card').forEach(card => {
+                card.addEventListener('pointermove', (e) => {
+                    const r = card.getBoundingClientRect();
+                    card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+                    card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+                });
+            });
+
+            /* Role rotator */
+            const roles = $$('#roles span');
+            let ri = 0;
+            if (!reduce && roles.length > 1) {
+                setInterval(() => {
+                    const cur = roles[ri];
+                    cur.classList.remove('on');
+                    cur.classList.add('off');
+                    ri = (ri + 1) % roles.length;
+                    const nxt = roles[ri];
+                    nxt.classList.remove('off');
+                    void nxt.offsetWidth;
+                    nxt.classList.add('on');
+                    setTimeout(() => cur.classList.remove('off'), 600);
+                }, 2600);
+            }
+
+            /* Counters */
+            const cnt = new IntersectionObserver((entries) => {
+                entries.forEach(en => {
+                    if (!en.isIntersecting) return;
+                    const el = en.target;
+                    const to = +el.dataset.to;
+                    cnt.unobserve(el);
+                    if (reduce) { el.textContent = to; return; }
+                    const t0 = performance.now();
+                    const dur = 1400;
+                    const step = (t) => {
+                        const p = Math.min((t - t0) / dur, 1);
+                        el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3)));
+                        if (p < 1) requestAnimationFrame(step);
+                    };
+                    requestAnimationFrame(step);
+                });
+            }, { threshold: 0.6 });
+            $$('.count').forEach(el => cnt.observe(el));
+
+            /* Terminal tabs */
+            $$('.term-tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    $$('.term-tab').forEach(t => t.classList.toggle('active', t === tab));
+                    $$('.term-pane').forEach(p => p.classList.toggle('hidden', p.id !== tab.dataset.tab));
+                });
+            });
+
+            /* Terminal typing */
+            const typed = $('#typed');
+            const out = $('#termOut');
+            const cmd = 'node botline.js';
+            const lines = [
+                ['text-gray-500', '› Initializing portfolio v2026...'],
+                ['text-cyan-300/90', '› Cerita Kita RP ........ online'],
+                ['text-amber-300/90', '› Hommi Roleplay ........ online'],
+                ['text-emerald-300/90', '› Siap ngobrolin proyek baru.']
+            ];
+            const showLines = () => {
+                lines.forEach(([cls, txt], i) => {
+                    setTimeout(() => {
+                        const d = document.createElement('div');
+                        d.className = cls;
+                        d.textContent = txt;
+                        out.appendChild(d);
+                    }, reduce ? 0 : 350 * (i + 1));
+                });
+            };
+            if (reduce) { typed.textContent = cmd; showLines(); }
+            else {
+                let i = 0;
+                setTimeout(function type() {
+                    typed.textContent = cmd.slice(0, ++i);
+                    if (i < cmd.length) setTimeout(type, 70 + Math.random() * 60);
+                    else setTimeout(showLines, 300);
+                }, 900);
+            }
+
+            /* Toast */
+            const toast = $('#toast');
+            let tt;
+            const showToast = (msg) => {
+                $('#toastText').textContent = msg;
+                toast.classList.remove('hide');
+                clearTimeout(tt);
+                tt = setTimeout(() => toast.classList.add('hide'), 2000);
+            };
+
+            /* Copy email */
+            $('#copyEmail').addEventListener('click', async () => {
+                const mail = 'norabdillah95@gmail.com';
+                try {
+                    await navigator.clipboard.writeText(mail);
+                    showToast('Email disalin!');
+                } catch (e) {
+                    window.location.href = 'mailto:' + mail;
                 }
             });
-        }, { threshold: 0.1 });
 
-        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+            /* Topics */
+            let topic = '';
+            $$('.topic').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const on = topic !== btn.dataset.v;
+                    topic = on ? btn.dataset.v : '';
+                    $$('.topic').forEach(b => {
+                        const act = b === btn && on;
+                        b.style.borderColor = act ? 'rgba(139,92,246,.6)' : '';
+                        b.style.background = act ? 'rgba(139,92,246,.18)' : '';
+                        b.style.color = act ? '#fff' : '';
+                    });
+                });
+            });
 
-        setTimeout(() => {
-            const tw = document.querySelector('.typewriter');
-            if(tw) tw.style.borderRight = 'none';
-        }, 3500);
+            /* Contact form */
+            $('#contactForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const nama = $('#nama').value.trim();
+                const email = $('#email').value.trim();
+                const pesan = $('#pesan').value.trim();
+                const subject = encodeURIComponent((topic ? '[' + topic + '] ' : '') + 'Pesan dari ' + nama);
+                const body = encodeURIComponent('Nama: ' + nama + '\nEmail: ' + email + (topic ? '\nTopik: ' + topic : '') + '\n\nPesan:\n' + pesan);
+                window.location.href = 'mailto:norabdillah95@gmail.com?subject=' + subject + '&body=' + body;
+                showToast('Membuka aplikasi email...');
+            });
+        })();
     </script>
 </body>
 </html>
